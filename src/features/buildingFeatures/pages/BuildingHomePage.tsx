@@ -1,4 +1,4 @@
-import BuildingWidgets from './components/widgets/BuildingWidgets'
+import BuildingWidgets from '../components/widgets/BuildingWidgets'
 
 export default function BuildingHomePage() {
   return (
