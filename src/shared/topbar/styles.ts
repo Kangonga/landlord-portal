@@ -1,15 +1,15 @@
 import Badge from '@mui/material/Badge';
-import Avatar from '@mui/material/Avatar';
-import Stack from '@mui/material/Stack';
 import { styled } from '@mui/material';
 
-export const TopBarContainer = styled('div')(({ theme }) => ({
+export const TopBarContainer = styled('div')(({  }) => ({
     display:'flex',
     padding:'1rem',
     justifyContent:'space-between',
+    backgroundColor:'#eef2ff'
+
 }))
 
-export const AvatarContainer = styled('div')(({ theme }) => ({
+export const AvatarContainer = styled('div')(({  }) => ({
     display:'flex',
     gap:'.75rem',
     alignItems:'center',
