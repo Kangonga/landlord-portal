@@ -1,7 +1,6 @@
 import { render, screen } from "@testing-library/react";
-
-import Sidebar from './Sidebar'
 import { BrowserRouter } from "react-router-dom";
+import Sidebar from "@/shared/sidebar/Sidebar";
 
 test('should render links to dashboard, building, main meter, statements and profile pages ', () =>{ 
     render(<BrowserRouter><Sidebar /></BrowserRouter>);
