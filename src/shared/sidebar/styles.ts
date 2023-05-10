@@ -65,6 +65,7 @@ export const DrawerHeader = styled('div', {shouldForwardProp: (props) => props !
   height:'75px',
   justifyContent:!open?'center':'space-between',
   padding:'1rem',
+  marginBottom:'1rem',
   'img':{
     maxWidth:'60%'
   }
