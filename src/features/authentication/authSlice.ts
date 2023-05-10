@@ -7,6 +7,7 @@ const initialState = {
     userToken: null,
     error: null,
     isLoggedIn: false,
+    hasBothUtilities: false
 }
 
 const authReducer = createSlice({
