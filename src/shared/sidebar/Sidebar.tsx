@@ -21,10 +21,8 @@ interface sidebarprops {
   icon: SvgIconProps;
 }
 
-
 export default function Sidebar() {
   const [open, setOpen] = React.useState(true);
-
   const handleDrawerOpen = () => {
     setOpen(!open);
   };
@@ -67,9 +65,7 @@ export default function Sidebar() {
       <CssBaseline />
       <Drawer open={open}>
         <DrawerHeader open={open}>
-        {/* <figure> */}
           {open && <img src={images.logo} alt='M-paya logo' />}
-        {/* </figure> */}
           <IconButton onClick={handleDrawerOpen}>
             <MenuIcon style={{color:'#f1f2f3'}} />
           </IconButton>
