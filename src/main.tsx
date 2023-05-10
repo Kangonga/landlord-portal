@@ -10,7 +10,7 @@ import {
 
 import Home from './features/home/Home';
 import BuildingHomePage from './features/buildingFeatures/BuildingHomePage';
-import PageNotFound from './shared/components/pageNotFound/PageNotFound';
+import PageNotFound from './shared/pageNotFound/PageNotFound';
 
 
 // const routes:RouteObject[] = [
