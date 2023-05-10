@@ -1,7 +1,7 @@
-import React from 'react'
+import BuildingWidgets from './components/widgets/BuildingWidgets'
 
 export default function BuildingHomePage() {
   return (
-    <div>BuildingHomePage</div>
+    <BuildingWidgets />
   )
 }
