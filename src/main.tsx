@@ -9,7 +9,7 @@ import {
 } from 'react-router-dom';
 
 import Home from './features/home/Home';
-import BuildingHomePage from './features/buildingFeatures/BuildingHomePage';
+import BuildingHomePage from './features/buildingFeatures/pages/BuildingHomePage';
 import PageNotFound from './shared/pageNotFound/PageNotFound';
 
 
