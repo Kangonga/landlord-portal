@@ -7,7 +7,11 @@ const initialState = {
         default:{},
         active:{}
     },
-    utility:''
+    utility:'',
+    statementsRange:{
+        from:'',
+        to:''
+    }
 }
 
 const buildingReducer = createSlice({
