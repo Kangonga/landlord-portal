@@ -9,7 +9,7 @@ export const TopBarContainer = styled('div')(({  }) => ({
 
 }))
 
-export const AvatarContainer = styled('div')(({  }) => ({
+export const AvatarContainer = styled('div')(({ theme }) => ({
     display:'flex',
     gap:'.75rem',
     alignItems:'center',
@@ -17,7 +17,10 @@ export const AvatarContainer = styled('div')(({  }) => ({
         display:'flex',
         flexDirection:'column',
         '#name':{
-            fontWeight:'bold'
+            fontWeight:'bold',
+        },
+        [( theme.breakpoints.down('sm') )]:{
+          display:'none'
         }
     }
 }))
@@ -51,18 +54,3 @@ export const StyledBadge = styled(Badge)(({ theme }) => ({
     },
   },
 }));
-
-
-// export default function BadgeAvatars() {
-//   return (
-//     <Stack direction="row" spacing={2}>
-//       <StyledBadge
-//         overlap="circular"
-//         anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
-//         variant="dot"
-//       >
-//         <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
-//       </StyledBadge>
-//     </Stack>
-//   );
-// }
