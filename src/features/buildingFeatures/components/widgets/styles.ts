@@ -3,7 +3,7 @@ import { styled } from "@mui/material";
 export const WidgetsContainer = styled('div')(({})=>({
     display:'flex',
     gap:'1rem',
-    padding:'.75rem',
+    flexWrap:'wrap'
 }))
 
 export const BuildingWidget = styled('div')(({})=>({
