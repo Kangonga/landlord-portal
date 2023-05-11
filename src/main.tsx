@@ -11,15 +11,9 @@ import {
 import Home from './features/home/Home';
 import BuildingHomePage from './features/buildingFeatures/pages/BuildingHomePage';
 import PageNotFound from './shared/pageNotFound/PageNotFound';
+import { Provider } from 'react-redux';
+import { store } from './store';
 
-
-// const routes:RouteObject[] = [
-//   {
-//     path:'/',
-//     element: <App />,
-//     errorElement:<h1>Error: Page not found</h1>,
-//   },
-// ]
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path='/' element={<App />}>
@@ -30,10 +24,11 @@ const router = createBrowserRouter(
   )
 )
 
-// const router = createBrowserRouter(routes)
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <Provider store={store}>
+      <RouterProvider router={router} />
+    </Provider>
   </React.StrictMode>
 )
