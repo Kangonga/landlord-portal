@@ -5,16 +5,18 @@ import meterReducer from './features/mainMeterFeatures/meterSlice';
 import utilityReducer from "./features/utilitySlice";
 
 export interface storeInterface{
-    auth:()=>{},
-    building:()=>{},
-    meter:()=>{},
-    utility:()=>{}
+    auth:{},
+    building:{},
+    meter:{},
+    utility:{}
 }
 export const store = configureStore({
     reducer: {
         auth:authReducer,
+        utility: utilityReducer,
         building: buildingReducer,
         meter: meterReducer,
-        utility: utilityReducer
     }
 })
+export type RootState = ReturnType<typeof store.getState>
+export type AppDispatch = typeof store.dispatch
