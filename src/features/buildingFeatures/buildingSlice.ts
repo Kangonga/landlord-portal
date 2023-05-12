@@ -1,5 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+export interface buildingInterface {
+    label:string,
+    meters:{}[]
+}
+
 const initialState = {
     loading: false,
     buildingInfo: {
