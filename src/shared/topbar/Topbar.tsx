@@ -1,9 +1,12 @@
-import { Container } from '@/shared/components/sharedStyles'
 import { Autocomplete, Avatar, TextField } from '@mui/material'
 import { AvatarContainer, StyledBadge, TopBarContainer } from './styles'
+import { useAppDispatch, useAppSelector } from '@/globalHooks'
+import { utilityActions } from '@/features/utilitySlice'
 
 function Topbar() {
-  const buildings = ['Building one', 'Building two', 'Building Three']
+  const buildings = useAppSelector(state=>state.utility.buildings)
+  const utilityState = useAppSelector(state=>state.utility)
+  const dispatch = useAppDispatch()
   return (
     <TopBarContainer>
       <Autocomplete
@@ -11,9 +14,13 @@ function Topbar() {
         sx={{ width:'200px' }}
         id="combo-box"
         options={ buildings }
-        renderInput={(params) => <TextField {...params} label='Select Building'/> }
-        noOptionsText='No meters found'
-        defaultValue='Building One'
+        renderInput={(params) => 
+          <TextField {...params} label='Select Building'
+          />
+        }
+        noOptionsText='No buildings found'
+        value={utilityState.activeBuilding}
+        onChange={(e, newValue)=>dispatch(utilityActions.updateBuilding(newValue))}
       />
       <AvatarContainer>
         <StyledBadge
