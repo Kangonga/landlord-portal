@@ -25,6 +25,10 @@ export const BuildingStatementsContainer = styled('div')(({ theme })=>({
             flexDirection:'column',
             width:'inherit'
         },
+        [( theme.breakpoints.down('md'))]:{
+            flexDirection:'column',
+            width:'max-content',
+        },
     },
     '#customDateHolder':{
         display:'flex',
@@ -40,7 +44,7 @@ export const BuildingStatementsContainer = styled('div')(({ theme })=>({
         gap:'.75rem',
         justifyContent:'center',
         [(theme.breakpoints.up('sm'))]:{
-            flexDirection:'column',
+            flexDirection:'row',
             paddingTop:'2.5rem',
             justifyContent:'flex-start',
         },
