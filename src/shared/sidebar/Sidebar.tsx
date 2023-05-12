@@ -90,7 +90,7 @@ const SideBarIcon = (props:sidebarprops)=>{
     <SideBarItem open={props.open} onClick={():void=>navigate(props.route)}>
       <ListItemButton>
         <ListItemIcon>
-          <>{props.icon}{console.log(`change state ${props.open}`)}</>
+          <>{props.icon}</>
         </ListItemIcon>
         <ListItemText primary={props.displayText} />
       </ListItemButton>
