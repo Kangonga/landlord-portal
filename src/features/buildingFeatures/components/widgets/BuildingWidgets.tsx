@@ -1,6 +1,9 @@
+import { useAppSelector } from '@/globalHooks'
 import { BuildingWidget, WidgetsContainer } from './styles'
 
 export default function BuildingWidgets() {
+const activeBuildingDetails = useAppSelector(state=>state.utility.activeBuilding)
+console.log('active building', activeBuildingDetails)
   return (
         <WidgetsContainer>
             <BuildingWidget>
@@ -9,7 +12,7 @@ export default function BuildingWidgets() {
             </BuildingWidget>
             <BuildingWidget>
                     <span id='clientLabel'>Building Name:</span>
-                    <span id='clientName'>Building One</span>
+                    <span id='clientName'>{activeBuildingDetails.label}</span>
             </BuildingWidget>
             <BuildingWidget>
                     <span id='clientLabel'>Building location:</span>
