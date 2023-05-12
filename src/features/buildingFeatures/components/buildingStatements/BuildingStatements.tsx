@@ -25,7 +25,7 @@ export default function BuildingStatements() {
                 </IconButton>
             </Box>
             <Box id='customDateHolder'>
-                <Typography fontSize='1.2rem' textAlign='center'>Select custom date</Typography>
+                <Typography fontSize='1.2rem' textAlign='center'>Custom date</Typography>
                 <LocalizationProvider dateAdapter={AdapterDayjs} >
                     <DatePicker label={'from'} views={['day','month', 'year']} />
                     <DatePicker label={'to'} views={['day','month', 'year']} maxDate={today}/>
@@ -35,8 +35,6 @@ export default function BuildingStatements() {
                 </LocalizationProvider>
             </Box>
         </Box>
-
-
     </BuildingStatementsContainer>
   )
 }
