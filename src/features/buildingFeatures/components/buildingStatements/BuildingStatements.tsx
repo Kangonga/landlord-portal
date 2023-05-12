@@ -20,12 +20,12 @@ export default function BuildingStatements() {
                     noOptionsText='no period selected'
                     defaultValue='This month'
                 />
-                <IconButton sx={{backgroundColor:'#94e0ed', fontSize:'1rem', borderRadius:'5px'}}>
+                <IconButton sx={{backgroundColor:'#94e0ed', fontSize:'1rem', borderRadius:'5px', height:'max-content', padding:'1.2rem 0.75rem'}}>
                     XLS
                 </IconButton>
             </Box>
             <Box id='customDateHolder'>
-                <Typography fontSize='1.2rem' textAlign='center'>Custom date</Typography>
+                <Typography fontSize='1.2rem' textAlign='center' paddingTop='.75rem'>Custom date</Typography>
                 <LocalizationProvider dateAdapter={AdapterDayjs} >
                     <DatePicker label={'from'} views={['day','month', 'year']} />
                     <DatePicker label={'to'} views={['day','month', 'year']} maxDate={today}/>
