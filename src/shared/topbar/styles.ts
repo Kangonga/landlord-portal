@@ -3,7 +3,7 @@ import { styled } from '@mui/material';
 
 export const TopBarContainer = styled('div')(({  }) => ({
     display:'flex',
-    padding:'1rem',
+    padding:'1.2rem',
     justifyContent:'space-between',
     backgroundColor:'#eef2ff'
 
