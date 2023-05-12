@@ -47,7 +47,9 @@ export const Drawer = styled(MuiAppBar, { shouldForwardProp: (prop) => prop !== 
       boxSizing: 'border-box',
       minHeight:'100vh',
       backgroundColor:'#5A57FF',
-      position:'relative',
+      position:'fixed',
+      top:'0px',
+      left:0,
       ...(open && {
         ...openedMixin(theme),
         '& .MuiDrawer-paper': openedMixin(theme),
@@ -60,7 +62,7 @@ export const Drawer = styled(MuiAppBar, { shouldForwardProp: (prop) => prop !== 
 );
 
 export const DrawerHeader = styled('div', {shouldForwardProp: (props) => props !== 'open'})<headerProps>
-(({ theme, open }) => ({
+(({ open }) => ({
   display:'flex',
   height:'75px',
   justifyContent:!open?'center':'space-between',

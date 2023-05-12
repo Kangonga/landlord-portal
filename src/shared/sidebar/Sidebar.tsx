@@ -61,7 +61,7 @@ export default function Sidebar() {
   ]
 
   return (
-    <div style={{ display: 'flex' }}>
+    <div style={{ display: 'flex', position:'relative', width:open?'240px':'60px', transition:open? 'ease-in .2s':'.25s' }}>
       <CssBaseline />
       <Drawer open={open}>
         <DrawerHeader open={open}>
