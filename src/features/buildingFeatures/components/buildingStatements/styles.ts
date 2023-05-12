@@ -4,10 +4,11 @@ export const BuildingStatementsContainer = styled('div')(({ theme })=>({
     display:'flex',
     flexDirection:'column',
     gap:'1rem',
-    width:'300px',
+    width:'max-content',
     height:'400px',
+    flexWrap:'wrap',
     [( theme.breakpoints.up('sm'))]:{
-        width:'100%'
+        width:'100%',
     },
     [( theme.breakpoints.up('lg'))]:{
         width:'inherit'
@@ -25,10 +26,10 @@ export const BuildingStatementsContainer = styled('div')(({ theme })=>({
             flexDirection:'column',
             width:'inherit'
         },
-        [( theme.breakpoints.down('md'))]:{
-            flexDirection:'column',
-            width:'max-content',
-        },
+        // [( theme.breakpoints.down('md'))]:{
+        //     flexDirection:'column',
+        //     width:'max-content',
+        // },
     },
     '#customDateHolder':{
         display:'flex',
@@ -37,7 +38,13 @@ export const BuildingStatementsContainer = styled('div')(({ theme })=>({
             display:'flex',
             flexDirection:'column',
             gap:'.75rem'
-        }
+        },
+        [( theme.breakpoints.up('sm'))]:{
+            marginLeft:'1.2rem'
+        },
+        [( theme.breakpoints.up('lg'))]:{
+            marginLeft:'0'
+        },
     },
     '#defaultDateHolder':{
         display:'flex',
