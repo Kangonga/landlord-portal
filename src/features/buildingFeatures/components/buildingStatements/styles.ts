@@ -6,12 +6,18 @@ export const BuildingStatementsContainer = styled('div')(({ theme })=>({
     gap:'1rem',
     width:'300px',
     height:'400px',
+    [( theme.breakpoints.up('sm'))]:{
+        width:'100%'
+    },
+    [( theme.breakpoints.up('lg'))]:{
+        width:'inherit'
+    },
     '#dateHolder': {
         display:'flex',
         flexDirection:'column',
         [( theme.breakpoints.up('sm'))]:{
             flexDirection:'row',
-            width:'60dvw',
+            width:'100%',
             padding:'0 1rem',
             justifyContent:'space-between',
         },
