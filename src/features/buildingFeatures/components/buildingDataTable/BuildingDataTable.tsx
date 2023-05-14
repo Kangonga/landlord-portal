@@ -1,6 +1,6 @@
 import { Box } from '@mui/material'
 import { DataGrid, GridToolbar } from '@mui/x-data-grid'
-import { columns, rows } from './dataStructure'
+import { columns, rows } from './buildingTableDataStructure'
 
 export default function BuildingDataTable() {
   return (
