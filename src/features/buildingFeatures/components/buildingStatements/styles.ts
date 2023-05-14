@@ -34,6 +34,7 @@ export const BuildingStatementsContainer = styled('div')(({ theme })=>({
     '#customDateHolder':{
         display:'flex',
         flexDirection:'column',
+        minWidth:'200px',
         '&:nth-child(2)':{
             display:'flex',
             flexDirection:'column',

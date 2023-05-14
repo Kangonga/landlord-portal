@@ -15,6 +15,7 @@ export const BarChartContainer = styled('div')(({ theme })=>({
 export const Bar = styled('div')(({ theme })=>({
     height:'500px',
     width:'700px',
+    minWidth:'500px',
     backgroundColor:'gray',
     [( theme.breakpoints.down('lg' ))]:{
         width:'100%'
