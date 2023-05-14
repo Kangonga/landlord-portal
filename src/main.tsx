@@ -7,19 +7,24 @@ import {
   Route,
   RouterProvider
 } from 'react-router-dom';
-
+import '@/index.css'
 import Home from './features/home/Home';
 import BuildingHomePage from './features/buildingFeatures/pages/BuildingHomePage';
 import PageNotFound from './shared/pageNotFound/PageNotFound';
 import { Provider } from 'react-redux';
 import { store } from './store';
+import Login from './pages/login/Login';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path='/' element={<App />}>
+    <Route path='/' >
+      <Route index element={<Login />} />
+      <Route path='home' element={<App />}>
         <Route index element={<Home />} />
-        <Route path='/buildings' element={<BuildingHomePage />} />
+        <Route path='buildings' element={<BuildingHomePage />} />
         <Route path='*' element={<PageNotFound />} />
+      </Route>
+      <Route path='*' element={<PageNotFound />} />
     </Route>
   )
 )
