@@ -10,7 +10,7 @@ import ListItemText from '@mui/material/ListItemText';
 import { Drawer, DrawerHeader, SideBarItem } from './styles';
 import { images } from '@/assets';
 import { Box, SvgIconProps } from '@mui/material';
-import { AccountBalanceOutlined, BusinessOutlined, ElectricMeterOutlined, Home, Person3Outlined } from '@mui/icons-material';
+import { AccountBalanceOutlined, BusinessOutlined, ElectricMeterOutlined, Home, LogoutOutlined, Person3Outlined } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
 
 interface sidebarprops {
@@ -75,6 +75,14 @@ export default function Sidebar() {
                 <SideBarIcon {...sidebaritem} key={index}/>              )
            })}
           </>
+          <SideBarIcon 
+            {...{
+              displayText:'Log Out',
+              route:'/logout',
+              icon:<LogoutOutlined sx={{color:'#f1f2f3'}}/>,
+              open:open
+            }}
+          />
         </List>
       </Drawer>
       </Box>
@@ -86,7 +94,7 @@ const SideBarIcon = (props:sidebarprops)=>{
   const navigate = useNavigate()
   return(
     <SideBarItem open={props.open} onClick={():void=>navigate(props.route)}>
-      <ListItemButton>
+      <ListItemButton sx={{mt:props.route==='/logout'?'7rem':''}}>
         <ListItemIcon>
           <>{props.icon}</>
         </ListItemIcon>
