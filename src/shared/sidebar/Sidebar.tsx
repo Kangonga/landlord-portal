@@ -28,31 +28,31 @@ export default function Sidebar() {
   const sidebaritems:sidebarprops[] = [
     {
       displayText:'Dashboard',
-      route:'/',
+      route:'',
       icon:<Home sx={{color:'#f1f2f3'}}/>,
       open:open
     },
     {
       displayText:'Buildings',
-      route:'/buildings',
+      route:'buildings',
       icon:<BusinessOutlined sx={{color:'#f1f2f3'}}/>,
       open:open
     },
     {
       displayText:'Main Meters',
-      route:'/mainMeters',
+      route:'mainMeters',
       icon:<ElectricMeterOutlined sx={{color:'#f1f2f3'}}/>,
       open:open
     },
     {
       displayText:'Profile',
-      route:'/profile',
+      route:'profile',
       icon:<Person3Outlined sx={{color:'#f1f2f3'}}/>,
       open:open
     },
     {
       displayText:'Statements',
-      route:'/statements',
+      route:'statements',
       icon:<AccountBalanceOutlined sx={{color:'#f1f2f3'}}/>,
       open:open
     }
@@ -78,7 +78,7 @@ export default function Sidebar() {
           <SideBarIcon 
             {...{
               displayText:'Log Out',
-              route:'/logout',
+              route:'logout',
               icon:<LogoutOutlined sx={{color:'#f1f2f3'}}/>,
               open:open
             }}
