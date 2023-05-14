@@ -38,7 +38,8 @@ export const DrawerHeader = styled('div')<DrawerHeaderProps>(({ open }) => ({
   padding: '1rem',
   height:'5.9rem',
   'img':{
-    maxWidth:'60%'
+    maxWidth:'60%',
+    borderRadius:'10px',
   },
 }));
 
