@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
-interface authInterface {
+export interface authInterface {
     loading: boolean,
     userInfo: {},
     utility: string,
