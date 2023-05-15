@@ -10,7 +10,7 @@ import ListItemText from '@mui/material/ListItemText';
 import { Drawer, DrawerHeader, SideBarItem } from './styles';
 import { images } from '@/assets';
 import { Box, SvgIconProps } from '@mui/material';
-import { AccountBalanceOutlined, BusinessOutlined, ElectricMeterOutlined, Home, LogoutOutlined, Person3Outlined } from '@mui/icons-material';
+import { AccountBalanceOutlined, BusinessOutlined, ElectricMeterOutlined, Home, LiveHelpOutlined, LogoutOutlined, Person3Outlined } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
 
 interface sidebarprops {
@@ -32,16 +32,22 @@ export default function Sidebar() {
       icon:<Home sx={{color:'#f1f2f3'}}/>,
       open:open
     },
+    // {
+    //   displayText:'Buildings',
+    //   route:'buildings',
+    //   icon:<BusinessOutlined sx={{color:'#f1f2f3'}}/>,
+    //   open:open
+    // },
     {
-      displayText:'Buildings',
-      route:'buildings',
-      icon:<BusinessOutlined sx={{color:'#f1f2f3'}}/>,
+      displayText:'Meters',
+      route:'mainMeters',
+      icon:<ElectricMeterOutlined sx={{color:'#f1f2f3'}}/>,
       open:open
     },
     {
-      displayText:'Main Meters',
-      route:'mainMeters',
-      icon:<ElectricMeterOutlined sx={{color:'#f1f2f3'}}/>,
+      displayText:'Help and faq',
+      route:'help',
+      icon:<LiveHelpOutlined sx={{color:'#f1f2f3'}}/>,
       open:open
     },
     {
