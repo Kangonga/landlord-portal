@@ -1,13 +1,24 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = {
+interface meterInterface {
+    loading:boolean,
+    meterInfo: {},
+    utility:string,
+    building:string,
+    submeters:{}[],
+    activeMeter:{}
+}
+const initialState:meterInterface = {
     loading: false,
     meterInfo: {
-        submeters:[],
-        default:{},
-        active:{}
+        totalCollections:0,
+        paymentsIn:[],
+        paymentsOut:[]
     },
-    utility:''
+    utility:'',
+    building:'',
+    submeters:[{}],
+    activeMeter:{}
 }
 
 const meterReducer = createSlice({
