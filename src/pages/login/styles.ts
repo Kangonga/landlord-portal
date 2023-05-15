@@ -9,6 +9,7 @@ export const LoginPageContainer = styled('div')(({ })=>({
 }))
 
 export const LoginForm = styled('div')(({})=>({
+    fontFamily:'Roboto,Helvetica,Arial,sans-serif',
     backgroundColor:'white',
     borderRadius:'10px',
     display:'flex',
@@ -53,7 +54,8 @@ export const LoginForm = styled('div')(({})=>({
             outline:'thin',
             width:'100%',
             borderRadius:'5px',
-            border:'1px solid gray'
+            border:'1px solid gray',
+            padding:'.5rem'
         },
 
     },
