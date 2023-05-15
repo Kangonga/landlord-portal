@@ -1,8 +1,8 @@
 import BuildingWidgets from "@/features/buildingFeatures/components/widgets/BuildingWidgets"
-import { Bar, BarChartContainer } from "../buildingFeatures/pages/styles"
+import { Bar, BarChartContainer } from "../../features/buildingFeatures/pages/styles"
 import { HomeContainer } from "./styles"
-import BuildingStatements from "../buildingFeatures/components/buildingStatements/BuildingStatements"
-import BuildingDataTable from "../buildingFeatures/components/buildingDataTable/BuildingDataTable"
+import BuildingStatements from "../../features/buildingFeatures/components/buildingStatements/BuildingStatements"
+import BuildingDataTable from "../../features/buildingFeatures/components/buildingDataTable/BuildingDataTable"
 
 export default function Home() {
     return (
@@ -10,7 +10,7 @@ export default function Home() {
           <BuildingWidgets />
           <BarChartContainer>
             <Bar />
-            <BuildingStatements />
+          <BuildingStatements />
           </BarChartContainer>
           <BuildingDataTable />
       </HomeContainer>

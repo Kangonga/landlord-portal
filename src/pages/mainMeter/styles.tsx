@@ -1,6 +1,6 @@
 import { styled } from "@mui/material";
 
-export const HomeContainer = styled('div')(({})=>({
+export const MainMeterContainer = styled('div')(({})=>({
     display:'flex',
     flexDirection:'column',
     gap:'1rem',
