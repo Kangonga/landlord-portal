@@ -14,6 +14,10 @@ import PageNotFound from './shared/pageNotFound/PageNotFound';
 import { Provider } from 'react-redux';
 import { store } from './store';
 import Login from './pages/login/Login';
+import '@fontsource/roboto/300.css';
+import '@fontsource/roboto/400.css';
+import '@fontsource/roboto/500.css';
+import '@fontsource/roboto/700.css';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
