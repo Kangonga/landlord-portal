@@ -1,4 +1,4 @@
-import { styled, Button } from '@mui/material';
+import { styled } from '@mui/material';
 
 export const LoginPageContainer = styled('div')(({ })=>({
     background: 'linear-gradient(to bottom, #93c5fd, #70aefc, #5196f9, #357df3, #2563eb)',
@@ -69,7 +69,7 @@ export const LoginForm = styled('div')(({})=>({
         }
     },
     '.keepLoggedInSection':{
-        paddingTop:'1rem',
+        paddingBottom:'.75rem',
         textAlign:'center',
         display:'flex', 
         justifyContent:'center'
