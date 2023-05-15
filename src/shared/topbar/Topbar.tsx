@@ -4,7 +4,7 @@ import { useAppDispatch, useAppSelector } from '@/globalHooks'
 import { utilityActions } from '@/features/utilitySlice'
 
 function Topbar() {
-  const buildings = useAppSelector(state=>state.utility.buildings)
+  const buildings = useAppSelector(state=>state.utility.allBuildings)
   const utilityState = useAppSelector(state=>state.utility)
   const dispatch = useAppDispatch()
   return (
