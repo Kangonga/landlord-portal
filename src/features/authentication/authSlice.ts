@@ -4,7 +4,6 @@ import axios from "axios";
 export interface authInterface {
     loading: boolean,
     userInfo: {},
-    utility: string,
     userToken: string,
     error: string|undefined,
     isLoggedIn: boolean,
@@ -13,7 +12,6 @@ export interface authInterface {
 const initialState:authInterface = {
     loading: false,
     userInfo: {},
-    utility: '',
     userToken: '',
     error: '',
     isLoggedIn: false,
