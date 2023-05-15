@@ -2,6 +2,7 @@ import { DataGrid, GridToolbar } from '@mui/x-data-grid';
 import { MeterContainer } from "./styles";
 import { payInColumns, payOutColumns, payinrows, payoutrows } from "./meterTableDataStructure";
 import { Box, Typography } from '@mui/material';
+import SubMeterTable from '../subMeterTable/SubMeterTable';
 
 export default function MeterDataTables() {
   return (
@@ -23,6 +24,7 @@ export default function MeterDataTables() {
       }}
       />
     </Box>
+    <SubMeterTable />
     </MeterContainer>
   )
 }
