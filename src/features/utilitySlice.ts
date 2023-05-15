@@ -1,14 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { buildingInterface } from './buildingFeatures/buildingSlice';
+import { login } from "./authentication/authSlice";
 
 export interface utilityInterface {
-    clientId:'',
-    loading:false,
-    utility:'',
-    activeBuilding:buildingInterface,
-    buildings:buildingInterface[],
+    hasBothUtilities:boolean,
+    allUtilityData:{},
+    activeBuilding:{label:string, meters:{}[]},
+    allBuildings:{label:string, meters:{}[]}[],
     mainMeters:{}[],
-    meters:buildingInterface["meters"],
+    activeMainMeter:{},
+    meters:{}[],
+    activeMeter:{},
     statementsRange:{
         from:'',
         to:''
@@ -17,14 +18,13 @@ export interface utilityInterface {
     payments:[{}]
 }
 const initialState:utilityInterface = {
-    clientId:'',
-    loading:false,
-    utility:'',
+    hasBothUtilities:false,
+    allUtilityData:{},
     activeBuilding:{
         label:'building one',
         meters:[{label:'meter one'}, {label:'meter two'}, {label:'meter three'}]
     },
-    buildings:[
+    allBuildings:[
         {
             label:'building one',
             meters:[{label:'meter one'}, {label:'meter two'}, {label:'meter three'}]
@@ -35,7 +35,9 @@ const initialState:utilityInterface = {
         }
     ],
     mainMeters:[{}],
+    activeMainMeter:{},
     meters:[{}],
+    activeMeter:{},
     statementsRange:{
         from:'',
         to:''
@@ -51,12 +53,19 @@ const utilityReducer = createSlice({
         updateBuilding:(state,action)=>{
             console.log('in reducer')
             console.log('payload', action.payload)
-            state.activeBuilding = state.buildings.filter(building=>building.label===action.payload.label)[0]
+            state.activeBuilding = state.allBuildings.filter(building=>building.label===action.payload.label)[0]
             console.log('active building',state.activeBuilding)
         },
         updateUtility:()=>{},
         updateMeter: ()=>{},
         updateSubMeter:()=>{},
+    },
+    extraReducers: builder=>{
+        builder
+        .addCase(login.fulfilled, (state,action)=>{
+            state.allUtilityData = action.payload
+            
+        })
     }
 })
 
