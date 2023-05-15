@@ -68,13 +68,13 @@ export default function Sidebar() {
           </IconButton>
         </DrawerHeader>
         <Divider />
-        <List>
-           <>
+        <List sx={{display:'flex', flexDirection:'column',justifyContent:'space-between', gap:'2rem'}}>
+           <div>
              {sidebaritems.map((sidebaritem, index)=>{
               return (
                 <SideBarIcon {...sidebaritem} key={index}/>              )
            })}
-          </>
+          </div>
           <SideBarIcon 
             {...{
               displayText:'Log Out',
