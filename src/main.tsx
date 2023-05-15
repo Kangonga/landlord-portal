@@ -8,7 +8,7 @@ import {
   RouterProvider
 } from 'react-router-dom';
 import '@/index.css'
-import Home from './features/home/Home';
+import Home from './pages/home/Home';
 import BuildingHomePage from './features/buildingFeatures/pages/BuildingHomePage';
 import PageNotFound from './shared/pageNotFound/PageNotFound';
 import { Provider } from 'react-redux';
@@ -18,6 +18,7 @@ import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
+import MainMeter from './pages/mainMeter/MainMeter';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -26,6 +27,7 @@ const router = createBrowserRouter(
       <Route path='home' element={<App />}>
         <Route index element={<Home />} />
         <Route path='buildings' element={<BuildingHomePage />} />
+        <Route path='mainMeters' element={<MainMeter />} />
         <Route path='*' element={<PageNotFound />} />
       </Route>
       <Route path='*' element={<PageNotFound />} />
