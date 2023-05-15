@@ -12,14 +12,9 @@ export default function Login() {
         <figure >
           <img src={images.logo} />
         </figure>
-        <Typography
-          sx={{
-            textAlign:'center',
-            color:'#3730a3',
-            fontSize:'2rem',
-            fontWeight:'700'
-          }}>
-        Landord Login</Typography>
+        <Typography className='formTitle'>
+          Landord Login
+        </Typography>
         <form className='form'>
           <div className='formInput'>
             <label htmlFor="email">Email</label>
@@ -30,11 +25,10 @@ export default function Login() {
             <input id='password' type='password'/>
           </div>
           <Button className='button'>Sign In</Button>
-          <div style={{textAlign:'center', display:'flex', justifyContent:'center'}}>Keep me signed in
+          <div className='keepLoggedInSection'>Keep me signed in
               <input type='checkbox' style={{marginLeft:'1rem'}} />
           </div>
         </form>
-       
       </LoginForm>
     </LoginPageContainer>
   )

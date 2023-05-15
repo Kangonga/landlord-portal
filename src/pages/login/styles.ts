@@ -13,6 +13,7 @@ export const LoginForm = styled('div')(({})=>({
     borderRadius:'10px',
     display:'flex',
     flexDirection:'column',
+    gap:'.5rem',
     width:'500px',
     height:'max-content',
     padding:'1rem 0',
@@ -26,33 +27,51 @@ export const LoginForm = styled('div')(({})=>({
             height:'60px'
         }
     },
+    '.formTitle':{
+        textAlign:'center',
+        color:'#3730a3',
+        fontSize:'2rem',
+        fontWeight:'700'
+    },
     '.formInput':{
-        backgroundColor:'#d1d5db',
         display:'flex',
+        flexDirection:'column',
         justifyContent:'space-between',
-        alignItems:'center',
+        alignItems:'flex-start',
         width:'90%',
         margin:'auto',
-        padding:'1rem',
+        padding:'.5rem 1rem',
         borderRadius:'5px',
+        gap:'.5rem',
+        label:{
+            fontSize:'.9rem'
+        },
         input:{
-            height:'2rem',
+            backgroundColor:'#d1d5db',
+            height:'2.5rem',
             fontSize:'1rem',
-            outline:'thin'
+            outline:'thin',
+            width:'100%',
+            borderRadius:'5px',
+            border:'1px solid gray'
         },
 
     },
     '.form':{
         display:'flex',
         flexDirection:'column',
-        gap:'2rem',
-        padding:'1rem 0',
         button:{
             width:'max-content',
             backgroundColor:'#3730a3',
-            padding:'.75rem 1rem',
+            padding:'.75rem 1.1rem',
             color:'white',
             margin:'auto'
         }
+    },
+    '.keepLoggedInSection':{
+        paddingTop:'1rem',
+        textAlign:'center',
+        display:'flex', 
+        justifyContent:'center'
     }
 }))
