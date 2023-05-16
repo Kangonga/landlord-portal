@@ -45,7 +45,7 @@ export default function Sidebar() {
       open:open
     },
     {
-      displayText:'Help and faq',
+      displayText:'Help',
       route:'help',
       icon:<LiveHelpOutlined sx={{color:'#f1f2f3'}}/>,
       open:open
