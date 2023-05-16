@@ -2,6 +2,7 @@ import { styled } from "@mui/material";
 
 export const Container = styled('div')(({  })=>({
     display:'flex',
+    color:'black'
 }))
 export const ComponentContainer = styled('div')(({  })=>({
     display:'flex',
