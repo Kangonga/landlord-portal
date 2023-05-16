@@ -56,12 +56,12 @@ export default function Sidebar() {
       icon:<Person3Outlined sx={{color:'#f1f2f3'}}/>,
       open:open
     },
-    {
-      displayText:'Statements',
-      route:'statements',
-      icon:<AccountBalanceOutlined sx={{color:'#f1f2f3'}}/>,
-      open:open
-    }
+    // {
+    //   displayText:'Statements',
+    //   route:'statements',
+    //   icon:<AccountBalanceOutlined sx={{color:'#f1f2f3'}}/>,
+    //   open:open
+    // }
   ] 
   return (
     <Box sx={{ display: 'flex' }}>
