@@ -19,6 +19,7 @@ import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 import MainMeter from './pages/mainMeter/MainMeter';
+import HelpCenter from './pages/helpCenter/HelpCenter';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -28,6 +29,7 @@ const router = createBrowserRouter(
         <Route index element={<Home />} />
         <Route path='buildings' element={<BuildingHomePage />} />
         <Route path='mainMeters' element={<MainMeter />} />
+        <Route path='help' element={<HelpCenter />} />
         <Route path='*' element={<PageNotFound />} />
       </Route>
       <Route path='*' element={<PageNotFound />} />
