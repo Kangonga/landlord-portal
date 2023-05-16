@@ -1,13 +1,13 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from '@/App'
+import '@/index.css'
 import {
   createBrowserRouter,
   createRoutesFromElements,
   Route,
   RouterProvider
 } from 'react-router-dom';
-import '@/index.css'
 import Home from './pages/home/Home';
 import BuildingHomePage from './features/buildingFeatures/pages/BuildingHomePage';
 import PageNotFound from './shared/pageNotFound/PageNotFound';
@@ -20,6 +20,7 @@ import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 import MainMeter from './pages/mainMeter/MainMeter';
 import HelpCenter from './pages/helpCenter/HelpCenter';
+import Profile from './pages/profile/Profile';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -30,6 +31,7 @@ const router = createBrowserRouter(
         <Route path='buildings' element={<BuildingHomePage />} />
         <Route path='mainMeters' element={<MainMeter />} />
         <Route path='help' element={<HelpCenter />} />
+        <Route path='profile' element={<Profile />} />
         <Route path='*' element={<PageNotFound />} />
       </Route>
       <Route path='*' element={<PageNotFound />} />
