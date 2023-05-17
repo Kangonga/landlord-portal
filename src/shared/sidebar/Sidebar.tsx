@@ -84,7 +84,7 @@ export default function Sidebar() {
           <SideBarIcon 
             {...{
               displayText:'Log Out',
-              route:'logout',
+              route:'/',
               icon:<LogoutOutlined sx={{color:'#f1f2f3'}}/>,
               open:open
             }}
