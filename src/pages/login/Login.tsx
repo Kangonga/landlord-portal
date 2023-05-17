@@ -3,8 +3,10 @@ import { LoginForm, LoginPageContainer } from './styles'
 import { Button, Typography } from '@mui/material'
 import { useAppSelector } from '@/globalHooks';
 import { ChangeEvent, FormEvent, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export default function Login() {
+  const navigate = useNavigate()
   const [formData, setformData] = useState({
     email: '',
     password:'',
@@ -57,7 +59,7 @@ export default function Login() {
               onChange={handleChange}
               name='keepLoggedIn' style={{marginLeft:'1rem'}}/>
           </div>
-          <Button className='button' type='submit'>Sign In</Button>
+          <Button className='button' type='submit' onClick={()=>navigate('/home')}>Sign In</Button>
         </form>
       </LoginForm>
     </LoginPageContainer>
