@@ -19,6 +19,17 @@ console.log('active building', activeBuildingDetails)
                 disablePortal
                 sx={{ width:'200px' }}
                 id="combo-box"
+                options={ ['elec','water','all meters'] }
+                renderInput={(params) => 
+                <TextField {...params} label='Select utility'
+                />
+                }
+                noOptionsText='No meter found'
+           />
+            <Autocomplete
+                disablePortal
+                sx={{ width:'200px' }}
+                id="combo-box"
                 options={ ['123134421','873243432','all meters'] }
                 renderInput={(params) => 
                 <TextField {...params} label='Select meter'
