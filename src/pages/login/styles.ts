@@ -47,7 +47,7 @@ export const LoginForm = styled('div')(({})=>({
         label:{
             fontSize:'.9rem'
         },
-        input:{
+        '.input':{
             backgroundColor:'#d1d5db',
             height:'2.5rem',
             fontSize:'1rem',
