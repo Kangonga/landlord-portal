@@ -1,6 +1,6 @@
 import { styled } from "@mui/material";
 
-export const ProfilePageContainer = styled('div')(({ theme })=> ({
+export const ProfilePageContainer = styled('div')(({  })=> ({
     display:'flex',
     flexDirection:'column',
     height:'100dvh'
@@ -37,7 +37,7 @@ export const ProfileTopSection = styled('div')(({ theme })=> ({
     }
 }))
 
-export const Form = styled('form')(({ theme })=>({
+export const Form = styled('form')(({  })=>({
     width:'65%',
     padding:'1rem 0 1rem 5rem',
     display:'flex',
