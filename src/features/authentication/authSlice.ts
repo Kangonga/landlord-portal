@@ -7,7 +7,6 @@ export interface authInterface {
     userToken: string,
     error: string|undefined,
     isLoggedIn: boolean,
-    hasBothUtilities: boolean
 }
 const initialState:authInterface = {
     loading: false,
@@ -15,7 +14,6 @@ const initialState:authInterface = {
     userToken: '',
     error: '',
     isLoggedIn: false,
-    hasBothUtilities: false
 }
 
 const login = createAsyncThunk('auth/login',async ()=>{
@@ -39,7 +37,6 @@ const authReducer = createSlice({
             state.userInfo = action.payload
             state.isLoggedIn = true
             state.userToken = action.payload.userToken
-            state.hasBothUtilities = action.payload.utilityType>1?true:false
         })
         .addCase(login.rejected, (state, action)=>{
             state.loading = false
