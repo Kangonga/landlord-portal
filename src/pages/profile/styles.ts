@@ -49,7 +49,6 @@ export const Form = styled('form')(({ theme })=>({
         alignItems:'center'
     },
     'input':{
-        backgroundColor:'lightgray',
         borderRadius:'10px',
         border:'none',
         outline:'thin',
