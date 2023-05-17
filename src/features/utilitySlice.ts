@@ -2,10 +2,9 @@ import { createSlice } from "@reduxjs/toolkit";
 import { login } from "./authentication/authSlice";
 
 export interface utilityInterface {
-    hasBothUtilities:boolean,
     allUtilityData:{},
-    activeBuilding:{label:string, meters:{}[]},
-    allBuildings:{label:string, meters:{}[]}[],
+    activeBuilding:{label:string, meters:{}[], hasBothUtilities:boolean},
+    allBuildings:{label:string, meters:{}[], hasBothUtilities:boolean,}[],
     mainMeters:{}[],
     activeMainMeter:{},
     meters:{}[],
@@ -18,20 +17,22 @@ export interface utilityInterface {
     payments:[{}]
 }
 const initialState:utilityInterface = {
-    hasBothUtilities:false,
     allUtilityData:{},
     activeBuilding:{
         label:'building one',
-        meters:[{label:'meter one'}, {label:'meter two'}, {label:'meter three'}]
+        meters:[{label:'meter one'}, {label:'meter two'}, {label:'meter three'}],
+        hasBothUtilities:false,
     },
     allBuildings:[
         {
             label:'building one',
-            meters:[{label:'meter one'}, {label:'meter two'}, {label:'meter three'}]
+            meters:[{label:'meter one'}, {label:'meter two'}, {label:'meter three'}],
+            hasBothUtilities:false,
         },
         {
             label:'building two',
-            meters:[{label:'meter one'}, {label:'meter two'}, {label:'meter three'}]
+            meters:[{label:'meter one'}, {label:'meter two'}, {label:'meter three'}],
+            hasBothUtilities:false,
         }
     ],
     mainMeters:[{}],
