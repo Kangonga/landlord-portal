@@ -14,11 +14,17 @@ export default function MeterDataTables() {
           slots={{
               toolbar:GridToolbar
             }}
+            sx={{
+              border:'2px solid #cbd5e1'
+            }}
           autoHeight />
       </Box>
     <Box>
     <Typography sx={{textAlign:'center', color:'gray', fontSize:'1.2rem'}}>Payments Out</Typography>
       <DataGrid rows={payoutrows} columns={payOutColumns} autoHeight
+      sx={{
+        border:'2px solid #cbd5e1'
+      }}
        slots={{
         toolbar:GridToolbar
       }}

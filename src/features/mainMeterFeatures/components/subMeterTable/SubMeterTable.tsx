@@ -1,5 +1,5 @@
 import { Box, Typography } from '@mui/material'
-import { DataGrid } from '@mui/x-data-grid'
+import { DataGrid, GridToolbar } from '@mui/x-data-grid'
 import { subMeterTableColumns, subMeterTableRows } from './subMeterTableDataStructure'
 
 export default function SubMeterTable() {
@@ -9,6 +9,12 @@ export default function SubMeterTable() {
         <DataGrid 
             rows={subMeterTableRows}
             columns={subMeterTableColumns}
+            sx={{
+              border:'2px solid #cbd5e1'
+            }}
+            slots={{
+              toolbar:GridToolbar
+            }}
         />
     </Box>
   )

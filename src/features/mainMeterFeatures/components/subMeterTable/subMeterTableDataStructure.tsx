@@ -19,7 +19,7 @@ export const subMeterTableColumns:GridColDef[] = [
     },
     {field:'occupant', headerName:'Occupant', width:120},
     {field:'houseNo', headerName:'House No.', width:80},
-    {field:'lastPurchaseDate', headerName:'Last Purchase Date', width:120},
+    {field:'lastPurchaseDate', headerName:'Last Purchase Date', width:150},
 //     {field:'action', headerName:'', width:200,        renderCell:(params)=>{
 //       return <Box sx={{padding:'.75rem', backgroundColor:'lightblue', ':hover':{cursor:'pointer'}}}>
 //           {params.row.action}
