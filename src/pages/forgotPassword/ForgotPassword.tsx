@@ -60,7 +60,7 @@ export default function ForgotPassword() {
            name="code"
            id="code"
            />
-           <div style={{color:'red'}}>{verificationCodeFormik.errors.code}</div>
+           <div style={{color:'coral'}}>{verificationCodeFormik.errors.code}</div>
            <div style={{display:'flex', gap:'1rem', justifyContent:'center'}}>
             <Button type='submit' sx={{border:'1px solid gray'}} onClick={()=>navigate('/resetPassword')}>Submit</Button>
             <Button type='submit' sx={{border:'1px solid gray'}}>Resend Code</Button>
