@@ -1,11 +1,13 @@
 import { images } from '@/assets'
-import { LoginForm, LoginPageContainer } from './styles'
+import { ForgotPassword, LoginForm, LoginPageContainer } from './styles'
 import { Button, Typography } from '@mui/material'
 import { useAppSelector } from '@/globalHooks';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
+import { useNavigate } from 'react-router-dom';
 
 export default function Login() {
+  const navigate = useNavigate()
   interface formInterface {
     phoneNumber:string,
     password:string,
@@ -69,6 +71,9 @@ export default function Login() {
           </div>
           <Button className='button' type='submit'>Sign In</Button>
         </form>
+        <ForgotPassword className='forgotPassword'>
+            <Button onClick={()=>navigate('/forgotPassword')}>Forgot password? Click to reset</Button>
+        </ForgotPassword>
       </LoginForm>
     </LoginPageContainer>
   )
