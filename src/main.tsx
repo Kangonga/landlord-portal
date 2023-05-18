@@ -1,7 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from '@/App'
-import '@/index.css'
 import {
   createBrowserRouter,
   createRoutesFromElements,
@@ -21,11 +20,16 @@ import '@fontsource/roboto/700.css';
 import MainMeter from './pages/mainMeter/MainMeter';
 import HelpCenter from './pages/helpCenter/HelpCenter';
 import Profile from './pages/profile/Profile';
+import ForgotPassword from './pages/forgotPassword/ForgotPassword';
+import '@/index.css'
+import ResetPassword from './pages/resetPassword/ResetPassword';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path='/' >
       <Route index element={<Login />} />
+      <Route path='forgotPassword' element={< ForgotPassword/>} />
+      <Route path='resetPassword' element={< ResetPassword/>} />
       <Route path='home' element={<App />}>
         <Route index element={<Home />} />
         <Route path='buildings' element={<BuildingHomePage />} />
