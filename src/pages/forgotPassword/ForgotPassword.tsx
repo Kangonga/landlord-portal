@@ -50,7 +50,7 @@ export default function ForgotPassword() {
            <div style={{color:'coral'}}>{phoneNumberFormik.errors.phoneNumber}</div>
            <Button type='submit' sx={{border:'1px solid gray',width:'max-content', margin:'auto'}}>Submit</Button>
         </form>
-        <div style={{width:'100%', height:'10px', backgroundColor:'#60a5fa'}}></div>
+        <div style={{width:'100%', height:'10px', backgroundColor:'#3b82f6', borderLeft:'#3b82f6', borderRight:'#3b82f6'}}></div>
         <form onSubmit={verificationCodeFormik.handleSubmit}style={{display:isRequestSent===false?'none':'inherit'}}>
           <label>Please enter the verification code sent to your phone number</label>
           <input
