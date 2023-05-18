@@ -1,0 +1,139 @@
+{
+    "landlord": {
+      "personalDetails": {
+        "fullname": "John Doe",
+        "email": "johndoe@example.com",
+        "phoneNumber": "1234567890"
+      },
+        "buildings": [
+            {
+            "name": "Building A",
+            "site": "Site A",
+            "totalCollections": 5000,
+            "netCollections": 4500,
+            "totalPaid": 4000,
+            "balance": 1000,
+            "meters": [
+                {
+                "meterNumber": 1,
+                "utility": "water",
+                "totalCollections": 3000,
+                "netCollections": 2700,
+                "totalPaid": 2500,
+                "balance": 500,
+                "paymentsOut": [
+                    {
+                    "date": {
+                        "month": "January",
+                        "year": "2022"
+                    },
+                    "agentName": "Agent A",
+                    "transactionId": "TID123",
+                    "amount": 100
+                    },
+                    {
+                    "date": {
+                        "month": "February",
+                        "year": "2022"
+                    },
+                    "agentName": "Agent A",
+                    "transactionId": "TID456",
+                    "amount": 200
+                    }
+                    
+                ],
+                "subMeters": [
+                    {
+                    "subMeterNumber": 1,
+                    "utility": "water",
+                    "houseNumber": "Unit 101",
+                    "tenantName": "Tenant A",
+                    "collections": [
+                        {
+                        "date": {
+                            "month": "May",
+                            "year": "2022"
+                        },
+                        "transactionId": "TID001",
+                        "amount": 100
+                        },
+                        {
+                        "date": {
+                            "month": "June",
+                            "year": "2022"
+                        },
+                        "transactionId": "TID002",
+                        "amount": 150
+                        }
+                    ]
+                    },
+                    {
+                    "subMeterNumber": 2,
+                    "utility": "water",
+                    "houseNumber": "Unit 102",
+                    "tenantName": "Tenant B",
+                    "collections": [
+                        {
+                        "date": {
+                            "month": "May",
+                            "year": "2022"
+                        },
+                        "transactionId": "TID003",
+                        "amount": 120
+                        },
+                        {
+                        "date": {
+                            "month": "June",
+                            "year": "2022"
+                        },
+                        "transactionId": "TID004",
+                        "amount": 130
+                        }
+                    ]
+                    }
+                ]
+                }
+            ]
+            },
+            {
+            "name": "Building B",
+            "site": "Site B",
+            "totalCollections": 6000,
+            "netCollections": 5400,
+            "totalPaid": 5000,
+            "balance": 1000,
+            "meters": [
+                {
+                "meterNumber": 1,
+                "utility": "electricity",
+                "totalCollections": 4000,
+                "netCollections": 3600,
+                "totalPaid": 3500,
+                "balance": 100,
+                "paymentsOut": [
+                    {
+                    "date": {
+                        "month": "January",
+                        "year": "2022"
+                    },
+                    "agentName": "Agent B",
+                    "transactionId": "TID789",
+                    "amount": 200
+                    },
+                    {
+                    "date": {
+                        "month": "February",
+                        "year": "2022"
+                    },
+                    "agentName": "Agent B",
+                    "transactionId": "TID790",
+                    "amount": 100
+                    }
+                ]
+                }
+            ]
+            }
+        ]
+    }
+}
+  
