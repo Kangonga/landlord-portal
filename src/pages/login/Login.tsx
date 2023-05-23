@@ -52,6 +52,7 @@ interface apiResult {
       const token = response.data.token
       setIsError(false)
       dispatch(authActions.login({user, token}))
+      navigate('/home')
     }
   }
   const formik = useFormik({
@@ -84,17 +85,23 @@ interface apiResult {
             }
           </div>
           <>
-          {isError&&<Typography textAlign='center' margin='.75rem' color='red'>Invalid email or password</Typography>}
+          {isError&&<Typography textAlign='center' margin='.75rem' color='red'>Invalid phone number or password</Typography>}
           </>
-          <div className='keepLoggedInSection'>
+          {/* <div className='keepLoggedInSection'>
             <label>Keep me signed in</label>
               <input 
               checked={formik.values.keepLoggedIn}
               type='checkbox'
               onChange={formik.handleChange}
               name='keepLoggedIn' style={{marginLeft:'1rem'}}/>
-          </div>
-          <Button disabled={isRequestSent} className='button' type='submit'>Sign In</Button>
+          </div> */}
+          <Button 
+            disabled={isRequestSent} 
+            className='button'
+            sx={{backgroundColor:isRequestSent?'gray':'#3730a3'}} 
+            type='submit'>
+              Sign In
+          </Button>
         </form>
         <ForgotPassword className='forgotPassword'>
             <Button onClick={()=>navigate('/forgotPassword')}>Forgot password? Click to reset</Button>
