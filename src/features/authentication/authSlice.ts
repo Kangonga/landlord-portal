@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
 export interface authInterface {
     userId:string,
@@ -15,7 +15,7 @@ const authReducer = createSlice({
     name:'auth',
     initialState,
     reducers:{
-        updatePassword:(state,action)=>{
+        updatePassword:(action)=>{
             console.log('payload', action)
         },
         login:(state, action)=>{
