@@ -9,12 +9,14 @@ import useVerifyOtp from "@/hooks/useVerifyOtp";
 import useResetPassword from "@/hooks/useResetPassword";
 import { useAppDispatch } from "@/globalHooks";
 import { authActions } from "@/features/authentication/authSlice";
+import ResendCodeButton from '../../shared/timer/Timer';
 export default function ForgotPassword() {
   const dispatch = useAppDispatch()
   const [isCodeSent, setIsCodeSent] = useState(false)
   const navigate = useNavigate()
   const [isRequestSent, setIsRequestSent] = useState(false)
   const [showPhoneError, setShowPhoneError] = useState(false)
+  const [showCodeError, setShowCodeError] = useState(false)
   const [userToken,setUserToken] = useState('')
  const validationSchema=yup.object().shape({
   phoneNumber: yup.string()
@@ -25,15 +27,18 @@ export default function ForgotPassword() {
   initialValues:{phoneNumber:''},
   validationSchema,
   onSubmit:async(values)=>{
+      setIsCodeSent(true)
       console.log(values)
       const response = await useResetPassword(values.phoneNumber)
       if(response.status==0){
           setIsRequestSent(true)
           setUserToken(response.data.user)
+          setIsCodeSent(false)
       }
       else {
         setIsRequestSent(false)
         setShowPhoneError(true)
+        setIsCodeSent(false)
       }
   }
 })
@@ -48,11 +53,13 @@ export default function ForgotPassword() {
       console.log(response)
       if(response.status==0){
         console.log('successful otp')
+        setShowCodeError(false)
         dispatch(authActions.login(response.data))
         navigate('/resetPassword')
       }
       else{
         setIsCodeSent(false)
+        setShowCodeError(true)
       }
   }
 })
@@ -103,15 +110,17 @@ const handleResendCode = ()=>{
               >
                 Submit
             </Button>
-            <Box>
-            <Button 
+            <Box sx={{border:'1px solid gray'}}>
+            {/* <Button 
               disabled={isCodeSent}
               onClick={handleResendCode}
-              sx={{border:'1px solid gray'}}>
+              >
                 Resend Code
-            </Button>
+            </Button> */}
+            <ResendCodeButton/>
            </Box>
            </div>
+           {showCodeError&&<div style={{color:'coral'}}>Invalid or expired code</div>}
         </form>
         }
         <Button 
