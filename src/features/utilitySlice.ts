@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { login } from "./authentication/authSlice";
 
 export interface utilityInterface {
     allUtilityData:{},
@@ -60,13 +59,6 @@ const utilityReducer = createSlice({
         updateUtility:()=>{},
         updateMeter: ()=>{},
         updateSubMeter:()=>{},
-    },
-    extraReducers: builder=>{
-        builder
-        .addCase(login.fulfilled, (state,action)=>{
-            state.allUtilityData = action.payload
-            
-        })
     }
 })
 
