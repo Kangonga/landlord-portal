@@ -23,6 +23,7 @@ import Profile from './pages/profile/Profile';
 import ForgotPassword from './pages/forgotPassword/ForgotPassword';
 import '@/index.css'
 import ResetPassword from './pages/resetPassword/ResetPassword';
+import SendOtp from './pages/sendOtp/SendOtp';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -30,6 +31,7 @@ const router = createBrowserRouter(
       <Route index element={<Login />} />
       <Route path='forgotPassword' element={< ForgotPassword/>} />
       <Route path='resetPassword' element={< ResetPassword/>} />
+      <Route path='otp' element={< SendOtp/>} />
       <Route path='home' element={<App />}>
         <Route index element={<Home />} />
         <Route path='buildings' element={<BuildingHomePage />} />
