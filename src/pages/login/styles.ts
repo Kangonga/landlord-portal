@@ -9,7 +9,7 @@ export const LoginPageContainer = styled('div')(({ })=>({
     alignItems:'center',
 }))
 
-export const LoginForm = styled('div')(({})=>({
+export const LoginForm = styled('div')(({ theme })=>({
     backgroundColor:'white',
     borderRadius:'10px',
     display:'flex',
@@ -18,6 +18,9 @@ export const LoginForm = styled('div')(({})=>({
     width:'500px',
     height:'max-content',
     padding:'1rem 0',
+    [(theme.breakpoints.down('sm'))]:{
+        width:'90%'
+    },
     'figure':{
         padding:'1rem 0',
         display:'flex',
