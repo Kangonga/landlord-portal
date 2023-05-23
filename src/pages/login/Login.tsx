@@ -1,6 +1,6 @@
 import { images } from '@/assets'
-import { ForgotPassword, LoginForm, LoginPageContainer } from './styles'
-import { Button, Typography } from '@mui/material'
+import { ForgotPassword, LoginButtonContainer, LoginForm, LoginPageContainer } from './styles'
+import { Button, CircularProgress, Typography } from '@mui/material'
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 import { useNavigate } from 'react-router-dom';
@@ -85,7 +85,7 @@ interface apiResult {
             }
           </div>
           <>
-          {isError&&<Typography textAlign='center' margin='.75rem' color='red'>Invalid phone number or password</Typography>}
+          {isError&&<Typography textAlign='center' margin='.75rem' color='coral'>Invalid phone number or password</Typography>}
           </>
           {/* <div className='keepLoggedInSection'>
             <label>Keep me signed in</label>
@@ -95,13 +95,16 @@ interface apiResult {
               onChange={formik.handleChange}
               name='keepLoggedIn' style={{marginLeft:'1rem'}}/>
           </div> */}
-          <Button 
-            disabled={isRequestSent} 
-            className='button'
-            sx={{backgroundColor:isRequestSent?'gray':'#3730a3'}} 
-            type='submit'>
-              Sign In
-          </Button>
+          <LoginButtonContainer isRequestSent={isRequestSent}>
+            <Button 
+              disabled={isRequestSent} 
+              className='button'
+              type='submit'>
+                Sign In
+            </Button>
+           { isRequestSent&& <CircularProgress size={25} sx={{color:'white'}} /> }
+          </LoginButtonContainer>
+
         </form>
         <ForgotPassword className='forgotPassword'>
             <Button onClick={()=>navigate('/forgotPassword')}>Forgot password? Click to reset</Button>

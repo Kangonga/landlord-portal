@@ -71,10 +71,7 @@ export const LoginForm = styled('div')(({ theme })=>({
             padding:'.75rem 1.1rem',
             color:'white',
             margin:'auto',
-            '&:hover':{
-                backgroundColor:'lightblue',
-                color:'black'
-            }
+
         }
     },
     '.keepLoggedInSection':{
@@ -90,5 +87,22 @@ export const ForgotPassword = styled('div')(({})=>({
     button:{
         fontSize:'.8rem',
         textDecoration:'underline'
+    }
+}))
+interface divProps {
+    isRequestSent:boolean
+}
+export const LoginButtonContainer = styled('div', { shouldForwardProp: ( prop ) => prop !=='isRequestSent'})<divProps>
+(({ isRequestSent })=>({
+    display:'flex', 
+    alignItems:'center', 
+    width:'max-content', 
+    margin:'auto', 
+    padding:'0 .5rem', 
+    borderRadius:'5px',
+    backgroundColor:isRequestSent?'gray':'#3730a3',
+    '& :hover':{
+        backgroundColor:'#4f46e5',
+        color:'black'
     }
 }))
