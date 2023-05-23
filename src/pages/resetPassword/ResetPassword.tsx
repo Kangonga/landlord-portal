@@ -2,9 +2,9 @@ import { FormEvent, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import useUpdatePassword from '@/hooks/useUpdatePassword';
 import { useAppSelector } from '@/globalHooks';
-import { LoginForm, LoginPageContainer } from '../login/styles';
+import { LoginButtonContainer, LoginForm, LoginPageContainer } from '../login/styles';
 import { images } from '@/assets';
-import { Button, Typography } from '@mui/material';
+import { Button, CircularProgress, Typography } from '@mui/material';
 
 export default function ResetPassword() {
     const state = useAppSelector(state=>state.auth)
@@ -26,7 +26,10 @@ export default function ResetPassword() {
             const response = await useUpdatePassword(userId,password,token)
             console.log('after password update', response)
             if (response.status==0)navigate('/')
-            else(setShowErrors(true)) 
+            else{
+                setIsPasswordChanged(false)
+                setShowErrors(true)
+            }
         })()}
     }
     return (
@@ -49,11 +52,15 @@ export default function ResetPassword() {
                 <input disabled={isPasswordChanged} className='input' name="confirmPassword"value={confirmPassword} onChange={(e)=>setConfirmPassword(e.target.value)}/>
                </div>
                {!(confirmPassword===password)&&
-               <div  style={{textAlign:'center',color:'coral', paddingBottom:'.75rem'}}>passwords do not match</div>}
+               <div style={{textAlign:'center',color:'coral', paddingBottom:'.75rem'}}>passwords do not match</div>}
+               <LoginButtonContainer isRequestSent={isPasswordChanged}>
                <Button 
-                sx={{backgroundColor:isPasswordChanged?'gray':'#3730a3'}} 
-                disabled={isPasswordChanged} className='button' type='submit'>Sign In</Button>
-                {showErrors&&<div color='coral'>Password update unsuccessful. Try again</div>}
+                    sx={{backgroundColor:isPasswordChanged?'gray':'#3730a3'}} 
+                    disabled={isPasswordChanged} className='button' type='submit'>Sign In
+                </Button>
+                {isPasswordChanged&&<CircularProgress size={23} sx={{color:'white'}}/>}
+                    {showErrors&&<div color='coral'>Password update unsuccessful. Try again</div>}
+                </LoginButtonContainer>
             </form>
         </LoginForm>
     </LoginPageContainer>
