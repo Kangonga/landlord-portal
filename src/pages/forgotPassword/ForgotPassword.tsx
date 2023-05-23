@@ -1,36 +1,64 @@
 import { LoginPageContainer } from "../login/styles";
 import { ForgotPasswordForm, KeyIcon } from "./styles";
-import { useFormik } from "formik";
-import * as yup from 'yup';
 import { useState } from "react";
-import { Button, Typography } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-
+import { useFormik } from "formik"
+import * as yup from 'yup';
+import useVerifyOtp from "@/hooks/useVerifyOtp";
+import useResetPassword from "@/hooks/useResetPassword";
+import { useAppDispatch } from "@/globalHooks";
+import { authActions } from "@/features/authentication/authSlice";
 export default function ForgotPassword() {
+  const dispatch = useAppDispatch()
+  const [isCodeSent, setIsCodeSent] = useState(false)
   const navigate = useNavigate()
   const [isRequestSent, setIsRequestSent] = useState(false)
-  const validationSchema=yup.object().shape({
-    phoneNumber: yup.string()
-    .matches(/^0[0-9]{9}$/, 'Phone number must start with 0 and have exactly 10 digits')
-    .required('Phone number is required'),
-  })
-  const phoneNumberFormik = useFormik({
-    initialValues:{phoneNumber:''},
-    validationSchema,
-    onSubmit:(values)=>{
+  const [showPhoneError, setShowPhoneError] = useState(false)
+  const [userToken,setUserToken] = useState('')
+ const validationSchema=yup.object().shape({
+  phoneNumber: yup.string()
+  .matches(/^0[0-9]{9}$/, 'Phone number must start with 0 and have exactly 10 digits')
+  .required('Phone number is required'),
+})
+ const phoneNumberFormik = useFormik({
+  initialValues:{phoneNumber:''},
+  validationSchema,
+  onSubmit:async(values)=>{
       console.log(values)
-      setIsRequestSent(true)
-    }
-  })
-  const verificationCodeFormik = useFormik({
-    initialValues:{code:''},
-    validationSchema:yup.object().shape({
+      const response = await useResetPassword(values.phoneNumber)
+      if(response.status==0){
+          setIsRequestSent(true)
+          setUserToken(response.data.user)
+      }
+      else {
+        setIsRequestSent(false)
+        setShowPhoneError(true)
+      }
+  }
+})
+ const verificationCodeFormik = useFormik({
+  initialValues:{code:''},
+  validationSchema:yup.object().shape({
       code: yup.string().required('A valid verification code is required')
-    }),
-    onSubmit:(values)=>{
-      console.log(values)      
-    }
-  })
+  }),
+  onSubmit:async(values)=>{
+      setIsCodeSent(true)
+      const response = await useVerifyOtp(values.code, userToken)
+      console.log(response)
+      if(response.status==0){
+        console.log('successful otp')
+        dispatch(authActions.login(response.data))
+        navigate('/resetPassword')
+      }
+      else{
+        setIsCodeSent(false)
+      }
+  }
+})
+const handleResendCode = ()=>{
+
+}
   return (
     <LoginPageContainer>
         <ForgotPasswordForm>
@@ -48,25 +76,44 @@ export default function ForgotPassword() {
            id="phoneNumber"
            />
            <div style={{color:'coral'}}>{phoneNumberFormik.errors.phoneNumber}</div>
-           <Button type='submit' sx={{border:'1px solid gray',width:'max-content', margin:'auto'}}>Submit</Button>
+           {showPhoneError&&<div style={{color:'coral'}}>Phone number account not found</div>}
+           <Button type='submit'
+            disabled={isCodeSent}
+           sx={{border:'1px solid gray',width:'max-content', margin:'auto'}}>Submit</Button>
         </form>
         <div style={{width:'100%', height:'10px', backgroundColor:'#3b82f6', borderLeft:'#3b82f6', borderRight:'#3b82f6'}}></div>
-        <form onSubmit={verificationCodeFormik.handleSubmit}style={{display:isRequestSent===false?'none':'inherit'}}>
+        {isRequestSent
+        &&
+        <form onSubmit={verificationCodeFormik.handleSubmit}>
           <label>Please enter the verification code sent to your phone number</label>
           <input
            value={verificationCodeFormik.values.code}
            onChange={verificationCodeFormik.handleChange}
            onBlur={verificationCodeFormik.handleBlur}
+           disabled={isCodeSent}
            name="code"
            id="code"
            />
            <div style={{color:'coral'}}>{verificationCodeFormik.errors.code}</div>
            <div style={{display:'flex', gap:'1rem', justifyContent:'center'}}>
-            <Button type='submit' sx={{border:'1px solid gray'}} onClick={()=>navigate('/resetPassword')}>Submit</Button>
-            <Button type='submit' sx={{border:'1px solid gray'}}>Resend Code</Button>
+            <Button 
+              disabled={isCodeSent}
+              type='submit'
+              sx={{border:'1px solid gray'}} 
+              >
+                Submit
+            </Button>
+            <Box>
+            <Button 
+              disabled={isCodeSent}
+              onClick={handleResendCode}
+              sx={{border:'1px solid gray'}}>
+                Resend Code
+            </Button>
+           </Box>
            </div>
-
         </form>
+        }
         <Button 
           onClick={()=>navigate('/')} 
           type='button' 
