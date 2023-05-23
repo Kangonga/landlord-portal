@@ -67,10 +67,14 @@ export const LoginForm = styled('div')(({ theme })=>({
         flexDirection:'column',
         button:{
             width:'max-content',
-            backgroundColor:'#3730a3',
+            // backgroundColor:'#3730a3',
             padding:'.75rem 1.1rem',
             color:'white',
-            margin:'auto'
+            margin:'auto',
+            '&:hover':{
+                backgroundColor:'lightblue',
+                color:'black'
+            }
         }
     },
     '.keepLoggedInSection':{
