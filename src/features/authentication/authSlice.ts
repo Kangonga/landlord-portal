@@ -2,11 +2,13 @@ import { createSlice } from "@reduxjs/toolkit";
 
 export interface authInterface {
     userId:string,
-    token:string
+    token:string,
+    phone:string
 }
 const initialState:authInterface = {
     userId: '',
-    token: ''
+    token: '',
+    phone:''
 }
 
 
@@ -15,6 +17,18 @@ const authReducer = createSlice({
     name:'auth',
     initialState,
     reducers:{
+        updatePhoneNumber:(state,action)=>{
+        state.phone = action.payload
+        console.log('phone updated')
+        },
+        updateUserId:(state,action)=>{
+            console.log('payload', action.payload)
+            state.userId = action.payload
+            console.log('userid updated', state.userId)
+        },
+        updateToken:(state,action)=>{
+            state.token = action.payload.token
+        },
         updatePassword:(action)=>{
             console.log('payload', action)
         },
