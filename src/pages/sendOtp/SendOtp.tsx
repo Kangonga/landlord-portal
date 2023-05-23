@@ -1,4 +1,4 @@
-import { Box, Button } from "@mui/material";
+import { Box, Button, CircularProgress } from "@mui/material";
 import { ForgotPasswordForm, KeyIcon } from "../forgotPassword/styles";
 import ResendCodeButton from "@/shared/timer/Timer";
 import { useFormik } from "formik";
@@ -8,7 +8,7 @@ import { useAppDispatch, useAppSelector } from "@/globalHooks";
 import { useNavigate } from "react-router-dom";
 import useVerifyOtp from "@/hooks/useVerifyOtp";
 import { authActions } from "@/features/authentication/authSlice";
-import { LoginPageContainer } from "../login/styles";
+import { LoginButtonContainer, LoginPageContainer } from "../login/styles";
 
 export default function SendOtp() {
   const authState = useAppSelector(state=>state.auth)
@@ -53,19 +53,20 @@ export default function SendOtp() {
            id="code"
            />
            <div style={{color:'coral'}}>{verificationCodeFormik.errors.code}</div>
-           <div style={{display:'flex', gap:'1rem', justifyContent:'center'}}>
-            <Button 
-              disabled={isCodeSent}
-              type='submit'
-              sx={{border:'1px solid gray'}} 
-              >
-                Submit
-            </Button>
-            <Box sx={{border:'1px solid gray'}}>
-            <ResendCodeButton/>
-           </Box>
-           </div>
            {showCodeError&&<div style={{color:'coral'}}>Invalid or expired code</div>}
+           <div style={{display:'flex', gap:'1rem', justifyContent:'center'}}>
+            <LoginButtonContainer isRequestSent={isCodeSent}>
+              <Button 
+                disabled={isCodeSent}
+                sx={{color:'white'}}
+                type='submit'
+                >
+                  Submit
+              </Button>
+              {isCodeSent&&<CircularProgress size={20} sx={{color:"white"}}/>}
+            </LoginButtonContainer>
+              <ResendCodeButton setShowError={setShowCodeError}/>
+           </div>
         </form>
         <Button
           onClick={()=>navigate('/')} 
