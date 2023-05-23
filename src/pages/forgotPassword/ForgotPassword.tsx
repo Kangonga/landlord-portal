@@ -1,7 +1,7 @@
-import { LoginPageContainer } from "../login/styles";
+import { LoginButtonContainer, LoginPageContainer } from "../login/styles";
 import { ForgotPasswordForm, KeyIcon } from "./styles";
 import { useState } from "react";
-import { Button, Typography } from "@mui/material";
+import { Button, CircularProgress, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik"
 import * as yup from 'yup';
@@ -59,10 +59,12 @@ export default function ForgotPassword() {
            />
            <div style={{color:'coral'}}>{phoneNumberFormik.errors.phoneNumber}</div>
            {showPhoneError&&<div style={{color:'coral'}}>Phone number account not found</div>}
-           <Button type='submit' disabled={isRequestSent}
-           sx={{border:'1px solid gray',width:'max-content', margin:'auto'}}>Submit</Button>
+          <LoginButtonContainer isRequestSent={isRequestSent}>
+            <Button type='submit' disabled={isRequestSent}
+              sx={{color:'white',width:'max-content', margin:'auto'}}>Submit</Button>
+                { isRequestSent&& <CircularProgress size={23} sx={{color:'blue'}} /> }
+           </LoginButtonContainer >
         </form>
-        <div style={{width:'100%', height:'10px', backgroundColor:'#3b82f6', borderLeft:'#3b82f6', borderRight:'#3b82f6'}}></div>
         <Button 
           onClick={()=>navigate('/')} 
           type='button' 
