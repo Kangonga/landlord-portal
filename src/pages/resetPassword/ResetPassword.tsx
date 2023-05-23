@@ -15,15 +15,19 @@ export default function ResetPassword() {
     const navigate = useNavigate()
     const [password, setPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
+    const [showErrors,setShowErrors] = useState(false)
+
     const [isPasswordChanged, setIsPasswordChanged] = useState(false)
     const handleSubmit = (e:FormEvent)=>{
         e.preventDefault()
         setIsPasswordChanged(true)
-        if (confirmPassword===password){(async()=>{
+        if (confirmPassword===password){
+            (async()=>{
             const response = await useUpdatePassword(userId,password,token)
             console.log('after password update', response)
-            navigate('/') 
-        })}
+            if (response.status==0)navigate('/')
+            else(setShowErrors(true)) 
+        })()}
     }
     return (
     <LoginPageContainer>
@@ -46,7 +50,10 @@ export default function ResetPassword() {
                </div>
                {!(confirmPassword===password)&&
                <div  style={{textAlign:'center',color:'coral', paddingBottom:'.75rem'}}>passwords do not match</div>}
-               <Button disabled={isPasswordChanged} className='button' type='submit'>Sign In</Button>
+               <Button 
+                sx={{backgroundColor:isPasswordChanged?'gray':'#3730a3'}} 
+                disabled={isPasswordChanged} className='button' type='submit'>Sign In</Button>
+                {showErrors&&<div color='coral'>Password update unsuccessful. Try again</div>}
             </form>
         </LoginForm>
     </LoginPageContainer>
