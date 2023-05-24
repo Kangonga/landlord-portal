@@ -20,7 +20,7 @@ function Topbar() {
         }
         noOptionsText='No buildings found'
         value={utilityState.activeBuilding}
-        onChange={(e, newValue)=>dispatch(utilityActions.updateBuilding(newValue))}
+        onChange={(_e, newValue)=>dispatch(utilityActions.updateBuilding(newValue))}
       />
       <AvatarContainer>
         <StyledBadge

@@ -10,7 +10,7 @@ import ListItemText from '@mui/material/ListItemText';
 import { Drawer, DrawerHeader, SideBarItem } from './styles';
 import { images } from '@/assets';
 import { Box, SvgIconProps } from '@mui/material';
-import { AccountBalanceOutlined, BusinessOutlined, ElectricMeterOutlined, Home, LiveHelpOutlined, LogoutOutlined, Person3Outlined } from '@mui/icons-material';
+import { ElectricMeterOutlined, Home, LiveHelpOutlined, LogoutOutlined, Person3Outlined } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
 
 interface sidebarprops {
@@ -56,12 +56,6 @@ export default function Sidebar() {
       icon:<Person3Outlined sx={{color:'#f1f2f3'}}/>,
       open:open
     },
-    // {
-    //   displayText:'Statements',
-    //   route:'statements',
-    //   icon:<AccountBalanceOutlined sx={{color:'#f1f2f3'}}/>,
-    //   open:open
-    // }
   ] 
   return (
     <Box sx={{ display: 'flex' }}>

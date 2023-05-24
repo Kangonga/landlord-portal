@@ -22,7 +22,7 @@ function CustomizedAccordions() {
   const [expanded, setExpanded] = useState<string | false>('panel1');
 
   const handleChange =
-    (panel: string) => (event: SyntheticEvent, newExpanded: boolean) => {
+    (panel: string) => (_event: SyntheticEvent, newExpanded: boolean) => {
       setExpanded(newExpanded ? panel : false);
     };
 
