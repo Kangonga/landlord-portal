@@ -1,39 +1,14 @@
-// import { useEffect, useState } from "react"
-
-// interface timerProps{
-//     duration:number
-// }
-
-// export const CustomTimer = ( { duration }:timerProps)=>{
-//     const [ timeLeft, setTimeLeft] = useState(duration)
-//     console.log('remounted', timeLeft)
-//     useEffect(()=>{
-//         const timer = setInterval(()=>{
-//             if(timeLeft>0){
-//                 setTimeLeft(timeLeft-1)
-//             }
-//         }, 1000)
-//         return ()=>clearInterval(timer)
-//     },[timeLeft])
-//     return(
-//         <div>
-//             {timeLeft}
-//         </div>
-//     )
-// }
 import { authActions } from '@/features/authentication/authSlice';
 import { useAppDispatch, useAppSelector } from '@/globalHooks';
 import useResetPassword from '@/hooks/useResetPassword';
 import { LoginButtonContainer } from '@/pages/login/styles';
 import {  Button } from '@mui/material';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 
 interface timerProps {
   setShowError(val:boolean):any
 }
 export function ResendCodeButton ({setShowError}:timerProps) {
-  const navigate = useNavigate()
   const dispatch = useAppDispatch()
   const [disabled, setDisabled] = useState(false);
   const [timer, setTimer] = useState(0);
@@ -67,7 +42,7 @@ export function ResendCodeButton ({setShowError}:timerProps) {
 
   return (
     <LoginButtonContainer isRequestSent={isRequestSent}>
-      <Button onClick={handleClick} disabled={disabled} sx={{color:'white'}}>
+      <Button onClick={handleClick} disabled={disabled}sx={{color:'white'}}>
         Resend Code
       </Button>
       {timer > 0 && <span style={{color:'darkgray'}}>{timer} seconds</span>}
