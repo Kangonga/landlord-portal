@@ -1,22 +1,22 @@
-import { Box, Button, CircularProgress } from "@mui/material";
+import { Button, CircularProgress } from "@mui/material";
 import { ForgotPasswordForm, KeyIcon } from "../forgotPassword/styles";
 import ResendCodeButton from "@/shared/timer/Timer";
 import { useFormik } from "formik";
 import * as yup from 'yup';
 import { useState } from "react";
 import { useAppDispatch, useAppSelector } from "@/globalHooks";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import useVerifyOtp from "@/hooks/useVerifyOtp";
 import { authActions } from "@/features/authentication/authSlice";
 import { LoginButtonContainer, LoginPageContainer } from "../login/styles";
 
 export default function SendOtp() {
   const authState = useAppSelector(state=>state.auth)
+  const userid =  useAppSelector(state=>state.auth.userId)
+  const navigate = useNavigate()
     const dispatch = useAppDispatch()
     const [isCodeSent, setIsCodeSent] = useState(false)
-    const navigate = useNavigate()
     const [showCodeError, setShowCodeError] = useState(false)
-    const userid =  useAppSelector(state=>state.auth.userId)
    const verificationCodeFormik = useFormik({
     initialValues:{code:''},
     validationSchema:yup.object().shape({
@@ -40,6 +40,7 @@ export default function SendOtp() {
   })
   return (
     <LoginPageContainer>
+    {!userid && <Navigate to='/forgotPassword' replace={true}/>}
     <ForgotPasswordForm>
         <KeyIcon />
         <form onSubmit={verificationCodeFormik.handleSubmit}>

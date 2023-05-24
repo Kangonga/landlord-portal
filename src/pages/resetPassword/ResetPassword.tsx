@@ -1,5 +1,5 @@
 import { FormEvent, useState } from 'react'
-import { useNavigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 import useUpdatePassword from '@/hooks/useUpdatePassword';
 import { useAppSelector } from '@/globalHooks';
 import { LoginButtonContainer, LoginForm, LoginPageContainer } from '../login/styles';
@@ -34,6 +34,7 @@ export default function ResetPassword() {
     }
     return (
     <LoginPageContainer>
+        {!userId && <Navigate to='/forgotPassword' replace={true}/>}
         <LoginForm>
             <figure>
                 <img src={images.logo} />
