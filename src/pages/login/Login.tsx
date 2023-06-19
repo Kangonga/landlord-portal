@@ -1,91 +1,126 @@
-import { images } from '@/assets'
-import { ForgotPassword, LoginButtonContainer, LoginForm, LoginPageContainer } from './styles'
-import { Button, CircularProgress, Typography } from '@mui/material'
-import { useFormik } from 'formik';
-import * as yup from 'yup';
-import { useNavigate } from 'react-router-dom';
-import useLogin from '@/hooks/useLogin';
-import { useState } from 'react';
-import { useAppDispatch } from '@/globalHooks';
-import { authActions } from '@/features/authentication/authSlice';
+import { images } from "@/assets";
+import {
+  ForgotPassword,
+  LoginButtonContainer,
+  LoginForm,
+  LoginPageContainer,
+} from "./styles";
+import { Button, CircularProgress, Typography } from "@mui/material";
+import * as yup from "yup";
+import { useNavigate } from "react-router-dom";
+import useLogin from "@/hooks/useLogin";
+import { useState } from "react";
+import { useAppDispatch } from "@/globalHooks";
+import { authActions } from "@/features/authentication/authSlice";
+import { useFormik } from "formik";
 
 export default function Login() {
-  const dispatch = useAppDispatch()
-  const [isError, setIsError] =  useState(false)
-  const [isRequestSent,setIsRequestSent] =  useState(false)
+  const dispatch = useAppDispatch();
+  const [isError, setIsError] = useState(false);
+  const [isRequestSent, setIsRequestSent] = useState(false);
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   interface formInterface {
-    phone:string,
-    password:string,
-    keepLoggedIn:boolean
-}
-interface apiResult {
-  data:{
-      user:number,
-      token:string
-  },
-  status:number,
-  statusDesc:string
-}
+    phone: string;
+    password: string;
+    keepLoggedIn: boolean;
+  }
+  interface apiResult {
+    data: {
+      user: number;
+      token: string;
+    };
+    status: number;
+    statusDesc: string;
+  }
   const formData = {
-    phone: '',
-    password:'',
-    keepLoggedIn: false
-  }
-  const validationSchema=yup.object().shape({
-    phone: yup.string()
-    .matches(/^0[0-9]{9}$/, 'Phone number must start with 0 and have exactly 10 digits')
-    .required('Phone number is required'),
-    password: yup.string().required('Password is required'),
-  })
-  const handleSubmit = async (values:formInterface)=>{
-    setIsRequestSent(true)
-    const response:apiResult = await useLogin({phone:values.phone, password:values.password})
-    // console.log(response)
-    if(response.status===1){
-      setIsError(true)
-      setIsRequestSent(false)
+    phone: "",
+    password: "",
+    keepLoggedIn: false,
+  };
+  const validationSchema = yup.object().shape({
+    phone: yup
+      .string()
+      .matches(
+        /^0[0-9]{9}$/,
+        "Phone number must start with 0 and have exactly 10 digits"
+      )
+      .required("Phone number is required"),
+    password: yup.string().required("Password is required"),
+  });
+  const handleSubmit = async (values: formInterface) => {
+    setIsRequestSent(true);
+    const response: apiResult = await useLogin({
+      phone: values.phone,
+      password: values.password,
+    });
+    if (response.status === 1) {
+      setIsError(true);
+      setIsRequestSent(false);
+    } else {
+      const user = response.data.user;
+      const token = response.data.token;
+      setIsError(false);
+      dispatch(authActions.login({ user, token }));
+      navigate("/home");
     }
-    else{
-      const user = response.data.user
-      const token = response.data.token
-      setIsError(false)
-      dispatch(authActions.login({user, token}))
-      navigate('/home')
-    }
-  }
+  };
   const formik = useFormik({
-    initialValues:formData,
+    initialValues: formData,
     validationSchema,
-    onSubmit:async (values:formInterface)=>await handleSubmit(values)
-  })
+    onSubmit: async (values: formInterface) => await handleSubmit(values),
+  });
   return (
     <LoginPageContainer>
-      <LoginForm >
-        <figure >
+      <LoginForm>
+        <figure>
           <img src={images.logo} />
         </figure>
-        <Typography className='formTitle'>
-          Landord Login
-        </Typography>
-        <form className='form' onSubmit={formik.handleSubmit} >
-          <div className='formInput'>
+        <Typography className="formTitle">Landord Login</Typography>
+        <form className="form" onSubmit={formik.handleSubmit}>
+          <div className="formInput">
             <label htmlFor="phone">Phone Number</label>
-            <input disabled={isRequestSent} className='input' value={formik.values.phone}id='phone' name='phone' type='text'placeholder='e.g 0712345678'onBlur={formik.handleBlur}onChange={formik.handleChange}/>
-            {formik.touched.phone && formik.errors.phone &&
-              <Typography color='coral' fontSize='.9rem'>{formik.errors.phone}</Typography>
-            }
+            <input
+              disabled={isRequestSent}
+              className="input"
+              value={formik.values.phone}
+              id="phone"
+              name="phone"
+              type="text"
+              placeholder="e.g 0712345678"
+              onBlur={formik.handleBlur}
+              onChange={formik.handleChange}
+            />
+            {formik.touched.phone && formik.errors.phone && (
+              <Typography color="coral" fontSize=".9rem">
+                {formik.errors.phone}
+              </Typography>
+            )}
           </div>
-          <div className='formInput'>
+          <div className="formInput">
             <label htmlFor="password">Password</label>
-            <input disabled={isRequestSent} className='input' value={formik.values.password} id='password' name='password' type='password'onBlur={formik.handleBlur}onChange={formik.handleChange}/>
-            {formik.touched.password && formik.errors.password&&
-              <Typography color='coral' fontSize='.9rem'>{formik.errors.password}</Typography>
-            }
+            <input
+              disabled={isRequestSent}
+              className="input"
+              value={formik.values.password}
+              id="password"
+              name="password"
+              type="password"
+              onBlur={formik.handleBlur}
+              onChange={formik.handleChange}
+            />
+            {formik.touched.password && formik.errors.password && (
+              <Typography color="coral" fontSize=".9rem">
+                {formik.errors.password}
+              </Typography>
+            )}
           </div>
           <>
-          {isError&&<Typography textAlign='center' margin='.75rem' color='coral'>Invalid phone number or password</Typography>}
+            {isError && (
+              <Typography textAlign="center" margin=".75rem" color="coral">
+                Invalid phone number or password
+              </Typography>
+            )}
           </>
           {/* <div className='keepLoggedInSection'>
             <label>Keep me signed in</label>
@@ -96,20 +131,20 @@ interface apiResult {
               name='keepLoggedIn' style={{marginLeft:'1rem'}}/>
           </div> */}
           <LoginButtonContainer isRequestSent={isRequestSent}>
-            <Button 
-              disabled={isRequestSent} 
-              className='button'
-              type='submit'>
-                Sign In
+            <Button disabled={isRequestSent} className="button" type="submit">
+              Sign In
             </Button>
-           { isRequestSent&& <CircularProgress size={25} sx={{color:'white'}} /> }
+            {isRequestSent && (
+              <CircularProgress size={25} sx={{ color: "white" }} />
+            )}
           </LoginButtonContainer>
-
         </form>
-        <ForgotPassword className='forgotPassword'>
-            <Button onClick={()=>navigate('/forgotPassword')}>Forgot password? Click to reset</Button>
+        <ForgotPassword className="forgotPassword">
+          <Button onClick={() => navigate("/forgotPassword")}>
+            Forgot password? Click to reset
+          </Button>
         </ForgotPassword>
       </LoginForm>
     </LoginPageContainer>
-  )
+  );
 }
