@@ -4,7 +4,7 @@ interface loginProps {
   phone: string;
   password: string;
 }
-export default async function useLogin(props: loginProps) {
+export default async function handleLogin(props: loginProps) {
   const url = "https://ss.m-paya.net/api.php?src=login";
   const params = {
     api: {
