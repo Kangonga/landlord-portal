@@ -6,13 +6,14 @@ import {
   LoginPageContainer,
 } from "./styles";
 import { Button, CircularProgress, Typography } from "@mui/material";
-import * as yup from "yup";
 import { useNavigate } from "react-router-dom";
-import useLogin from "@/hooks/useLogin";
+import handleLogin from "@/hooks/useLogin";
 import { useState } from "react";
 import { useAppDispatch } from "@/globalHooks";
 import { authActions } from "@/features/authentication/authSlice";
 import { useFormik } from "formik";
+import { validationSchema } from "@/pages/login/validationSchema";
+import { apiResult, formInterface } from "@/pages/login/interfaces";
 
 export default function Login() {
   const dispatch = useAppDispatch();
@@ -20,37 +21,10 @@ export default function Login() {
   const [isRequestSent, setIsRequestSent] = useState(false);
 
   const navigate = useNavigate();
-  interface formInterface {
-    phone: string;
-    password: string;
-    keepLoggedIn: boolean;
-  }
-  interface apiResult {
-    data: {
-      user: number;
-      token: string;
-    };
-    status: number;
-    statusDesc: string;
-  }
-  const formData = {
-    phone: "",
-    password: "",
-    keepLoggedIn: false,
-  };
-  const validationSchema = yup.object().shape({
-    phone: yup
-      .string()
-      .matches(
-        /^0[0-9]{9}$/,
-        "Phone number must start with 0 and have exactly 10 digits"
-      )
-      .required("Phone number is required"),
-    password: yup.string().required("Password is required"),
-  });
+
   const handleSubmit = async (values: formInterface) => {
     setIsRequestSent(true);
-    const response: apiResult = await useLogin({
+    const response: apiResult = await handleLogin({
       phone: values.phone,
       password: values.password,
     });
@@ -65,11 +39,18 @@ export default function Login() {
       navigate("/home");
     }
   };
+  const formData = {
+    phone: "",
+    password: "",
+    keepLoggedIn: false,
+  };
+
   const formik = useFormik({
     initialValues: formData,
-    validationSchema,
+    validationSchema: validationSchema,
     onSubmit: async (values: formInterface) => await handleSubmit(values),
   });
+
   return (
     <LoginPageContainer>
       <LoginForm>
