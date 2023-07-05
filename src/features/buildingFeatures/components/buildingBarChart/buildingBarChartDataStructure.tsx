@@ -24,7 +24,8 @@ export function getLast12Months() {
   return {
     start: `${months[0]}`,
     end: `${months[11]}`,
-    labels: `${months}`,
+    labels: [`${months}`],
+    months,
   };
 }
 //obtain labels for last 12 months
