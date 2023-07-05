@@ -4,6 +4,15 @@ export interface formInterface {
   keepLoggedIn: boolean;
 }
 
+interface paymentsOut {
+  mmId: string;
+  pId: string;
+  paytime: string;
+  accNo: string;
+  accName: string;
+  amount: string;
+  message: string;
+}
 export interface apiResult {
   data: {
     user: number;
@@ -13,22 +22,24 @@ export interface apiResult {
   statusDesc: string;
 }
 
-interface motherMeterInterface {
+export interface motherMeterInterface {
   [number: string]: {
     mmId: number;
     buildingNo: string;
     accNo: string;
     accName: string;
-    type: string;
+    accType: string;
+    utilityType: string;
     regDate: string;
     sm: subMeterInterface;
+    payments?: paymentsOut;
   };
 }
 interface subMeterInterface {
   [name: string]: {
     mmId: number;
     smId: number;
-    accNo: string;
+    meterNo: string;
     type: number;
     regDate: string;
     payments: payment[];
@@ -49,7 +60,7 @@ interface payment {
   paybill: number;
 }
 
-export interface dashboard {
+export interface dashboardInterface {
   data: {
     Names: string;
     phone1: number | null;
@@ -58,7 +69,7 @@ export interface dashboard {
     address: string | null;
     nationalID: string | null;
     regDate: string | null;
-    mm: motherMeterInterface;
+    mm: motherMeterInterface[];
   };
   status: number;
   statusDesc: string;
