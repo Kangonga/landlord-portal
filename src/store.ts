@@ -1,22 +1,48 @@
-import { configureStore } from "@reduxjs/toolkit";
-import authReducer from '@/features/authentication/authSlice'
-import buildingReducer from './features/buildingFeatures/buildingSlice';
-import meterReducer from './features/mainMeterFeatures/meterSlice';
-import utilityReducer from "./features/utilitySlice";
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
+import authReducer from "@/features/authentication/authSlice";
 
-export interface storeInterface{
-    auth:{},
-    building:{},
-    meter:{},
-    utility:{}
+import {
+  persistReducer,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+} from "redux-persist";
+
+import storage from "redux-persist/lib/storage";
+import persistStore from "redux-persist/es/persistStore";
+import utilityReducer from "@/features/utilitySlice";
+
+const persistConfig = {
+  key: "root",
+  storage,
+};
+
+export interface storeInterface {
+  auth: object;
+  utility: object;
 }
+
+const reducers = combineReducers({
+  auth: authReducer,
+  utility: utilityReducer,
+});
+
+const persisedReducer = persistReducer(persistConfig, reducers);
 export const store = configureStore({
-    reducer: {
-        auth:authReducer,
-        utility: utilityReducer,
-        building: buildingReducer,
-        meter: meterReducer,
-    }
-})
-export type RootState = ReturnType<typeof store.getState>
-export type AppDispatch = typeof store.dispatch
+  reducer: persisedReducer,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      immutableCheck: { warnAfter: 128 },
+      serializableCheck: {
+        warnAfter: 128,
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    }),
+});
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;
+
+export const persistor = persistStore(store);
