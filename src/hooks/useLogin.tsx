@@ -16,6 +16,5 @@ export default async function handleLogin(props: loginProps) {
     },
   };
   const result = await axios.post(url, params);
-  console.log(result.data);
   return result.data;
 }
