@@ -1,66 +1,37 @@
+import { dashboardInterface } from "@/pages/login/interfaces";
 import { createSlice } from "@reduxjs/toolkit";
 
-export interface utilityInterface {
-    allUtilityData:{},
-    activeBuilding:{label:string, meters:{}[], hasBothUtilities:boolean},
-    allBuildings:{label:string, meters:{}[], hasBothUtilities:boolean,}[],
-    mainMeters:{}[],
-    activeMainMeter:{},
-    meters:{}[],
-    activeMeter:{},
-    statementsRange:{
-        from:'',
-        to:''
-    },
-    statements:[{}],
-    payments:[{}]
-}
-const initialState:utilityInterface = {
-    allUtilityData:{},
-    activeBuilding:{
-        label:'building one',
-        meters:[{label:'meter one'}, {label:'meter two'}, {label:'meter three'}],
-        hasBothUtilities:false,
-    },
-    allBuildings:[
-        {
-            label:'building one',
-            meters:[{label:'meter one'}, {label:'meter two'}, {label:'meter three'}],
-            hasBothUtilities:false,
-        },
-        {
-            label:'building two',
-            meters:[{label:'meter one'}, {label:'meter two'}, {label:'meter three'}],
-            hasBothUtilities:false,
-        }
-    ],
-    mainMeters:[{}],
-    activeMainMeter:{},
-    meters:[{}],
-    activeMeter:{},
-    statementsRange:{
-        from:'',
-        to:''
-    },
-    statements:[{}],
-    payments:[{}]
-}
+const initialState: dashboardInterface = {
+  data: {
+    Names: "",
+    phone1: 0,
+    phone2: 0,
+    email: "",
+    address: "",
+    nationalID: "",
+    regDate: "",
+    mm: [],
+  },
+  status: 0,
+  statusDesc: "",
+};
 
-const utilityReducer = createSlice({
-    name:'utility',
-    initialState,
-    reducers:{
-        updateBuilding:(state,action)=>{
-            console.log('in reducer')
-            console.log('payload', action.payload)
-            state.activeBuilding = state.allBuildings.filter(building=>building.label===action.payload.label)[0]
-            console.log('active building',state.activeBuilding)
-        },
-        updateUtility:()=>{},
-        updateMeter: ()=>{},
-        updateSubMeter:()=>{},
-    }
-})
+const utilitySlice = createSlice({
+  name: "utility",
+  initialState,
+  reducers: {
+    initialSetUp: (state, action) => {
+      state.data.Names = action.payload.Names;
+      state.data.phone1 = action.payload.phone1;
+      state.data.phone2 = action.payload.phone2;
+      state.data.email = action.payload.email;
+      state.data.address = action.payload.address;
+      state.data.nationalID = action.payload.nationalID;
+      state.data.regDate = action.payload.regDate;
+      state.data.mm = Object.values(action.payload.mm);
+    },
+  },
+});
 
-export const utilityActions = utilityReducer.actions
-export default utilityReducer.reducer
+export default utilitySlice.reducer;
+export const utilityActions = utilitySlice.actions;
