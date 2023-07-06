@@ -37,6 +37,9 @@ const utilitySlice = createSlice({
         mm.sm = sm;
       }
     },
+    updateUtility: (state, action) => {
+      state.activeUtility = action.payload;
+    },
   },
 });
 
