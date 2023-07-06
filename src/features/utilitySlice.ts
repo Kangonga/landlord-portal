@@ -14,6 +14,7 @@ const initialState: dashboardInterface = {
   },
   status: 0,
   statusDesc: "",
+  activeUtility: "all",
 };
 
 const utilitySlice = createSlice({
