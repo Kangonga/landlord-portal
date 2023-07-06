@@ -4,7 +4,7 @@ export interface formInterface {
   keepLoggedIn: boolean;
 }
 
-interface paymentsOut {
+export interface paymentsOut {
   mmId: string;
   pId: string;
   payTime: string;
