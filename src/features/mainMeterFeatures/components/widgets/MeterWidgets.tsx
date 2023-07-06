@@ -32,7 +32,7 @@ export default function MeterWidgets() {
     dispatch(meterActions.changeActiveMeter(meter));
     console.log("active m,eter", meterState);
   };
-  const changeUtil = (value: any) => {
+  const changeUtil = (value: unknown) => {
     dispatch(meterActions.changeActiveMeter(""));
     setUtil(value as string);
   };
@@ -57,7 +57,7 @@ export default function MeterWidgets() {
         )}
         value={util}
         noOptionsText="No meter found"
-        onChange={(event: SyntheticEvent, value) => changeUtil(value)}
+        onChange={(_event: SyntheticEvent, value) => changeUtil(value)}
       />
       <Autocomplete
         disablePortal
@@ -67,7 +67,7 @@ export default function MeterWidgets() {
         options={getMotherMeterIds(util)}
         renderInput={(params) => <TextField {...params} label="Select meter" />}
         noOptionsText="No meter found"
-        onChange={(e, value) => setActiveMeter(value as string)}
+        onChange={(_e, value) => setActiveMeter(value as string)}
       />
       <Autocomplete
         disablePortal
