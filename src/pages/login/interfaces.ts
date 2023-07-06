@@ -70,4 +70,6 @@ export interface dashboardInterface {
   };
   status: number;
   statusDesc: string;
+  activeUtility: utilityOptions;
 }
+type utilityOptions = "all" | "elec" | "water" | "gas";
