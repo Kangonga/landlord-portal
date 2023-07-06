@@ -4,8 +4,9 @@ import { useAppDispatch, useAppSelector } from "@/globalHooks";
 
 function Topbar() {
   // const buildings = useAppSelector((state) => state.utility.allBuildings);
-  // const utilityState = useAppSelector((state) => state.utility);
+  const utilityState = useAppSelector((state) => state.utility);
   const dispatch = useAppDispatch();
+
   return (
     <TopBarContainer>
       <Autocomplete
@@ -30,8 +31,8 @@ function Topbar() {
           <Avatar alt="Landlord image" src="" />
         </StyledBadge>
         <article>
-          <span id="name">John Doe</span>
-          <span id="email">jdoe@mail.com</span>
+          <span id="name">{utilityState.data.Names}</span>
+          <span id="email">{utilityState.data.email}</span>
         </article>
       </AvatarContainer>
     </TopBarContainer>
