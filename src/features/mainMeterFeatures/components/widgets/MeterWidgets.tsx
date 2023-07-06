@@ -1,11 +1,12 @@
 import { useAppDispatch, useAppSelector } from "@/globalHooks";
 import { MeterWidget, WidgetsContainer } from "./styles";
 import { Autocomplete, TextField } from "@mui/material";
-import { utilityActions } from "@/features/utilitySlice";
 import { SyntheticEvent, useState } from "react";
+import { meterActions } from "@/features/mainMeterFeatures/meterSlice";
 
 export default function MeterWidgets() {
   const utilityState = useAppSelector((state) => state.utility.data);
+  const meterState = useAppSelector((state) => state.meter);
   const dispatch = useAppDispatch();
   const [util, setUtil] = useState("all");
   console.log(util);
@@ -24,6 +25,16 @@ export default function MeterWidgets() {
     return utilityState.mm
       .filter((mm) => mm.utilityType === util)
       .map((mm) => mm.sm.map((sm) => sm.meterNo));
+  };
+  const setActiveMeter = (accNo: string) => {
+    console.log("accno", accNo);
+    const meter = utilityState.mm.filter((mm) => mm.accNo == accNo)[0];
+    dispatch(meterActions.changeActiveMeter(meter));
+    console.log("active m,eter", meterState);
+  };
+  const changeUtil = (value: any) => {
+    dispatch(meterActions.changeActiveMeter(""));
+    setUtil(value as string);
   };
 
   return (
@@ -46,15 +57,17 @@ export default function MeterWidgets() {
         )}
         value={util}
         noOptionsText="No meter found"
-        onChange={(event: SyntheticEvent, value) => setUtil(value as string)}
+        onChange={(event: SyntheticEvent, value) => changeUtil(value)}
       />
       <Autocomplete
         disablePortal
         sx={{ width: "200px" }}
         id="combo-box"
+        value={meterState.accNo}
         options={getMotherMeterIds(util)}
         renderInput={(params) => <TextField {...params} label="Select meter" />}
         noOptionsText="No meter found"
+        onChange={(e, value) => setActiveMeter(value as string)}
       />
       <Autocomplete
         disablePortal
