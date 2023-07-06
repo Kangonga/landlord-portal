@@ -28,6 +28,7 @@ interface motherMeterInterface {
   regDate: string;
   sm: subMeterInterface[];
   payments?: paymentsOut[];
+  activeSubMeter: string;
 }
 
 const initialState: motherMeterInterface = {
@@ -40,6 +41,7 @@ const initialState: motherMeterInterface = {
   regDate: "",
   sm: [],
   payments: [],
+  activeSubMeter: "all",
 };
 
 const meterReducer = createSlice({
@@ -47,7 +49,21 @@ const meterReducer = createSlice({
   initialState,
   reducers: {
     changeActiveMeter: (state, action) => {
-      state = { ...action.payload };
+      state.accName = action.payload.accName;
+      state.accNo = action.payload.accNo;
+      state.accType = action.payload.accType;
+      state.buildingNo = action.payload.buildingNo;
+      state.mmId = action.payload.mmId;
+      state.regDate = action.payload.regDate;
+      state.sm = action.payload.sm;
+      state.utilityType = action.payload.utilityType;
+      if (action.payload.payments) {
+        state.payments = action.payload.payments;
+      }
+      state.activeSubMeter = "all";
+    },
+    changeActiveSubMeter: (state, action) => {
+      state.activeSubMeter = action.payload;
     },
   },
 });
