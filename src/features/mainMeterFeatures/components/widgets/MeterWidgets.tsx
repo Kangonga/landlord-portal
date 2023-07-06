@@ -24,9 +24,12 @@ export default function MeterWidgets() {
       );
       return submeters[0];
     }
+    if (util == "none" || !util) {
+      return [];
+    }
     const submeters = utilityState.mm
-      .filter((mm) => mm.utilityType === util)
-      .map((mm) => mm.sm.map((sm) => sm.meterNo));
+      .filter((mm) => mm?.utilityType === util)
+      .map((mm) => mm?.sm?.map((sm) => sm.meterNo));
     return submeters[0];
   };
   const setActiveMeter = (accNo: string) => {
@@ -83,7 +86,11 @@ export default function MeterWidgets() {
         sx={{ width: "200px" }}
         id="combo-box"
         value={meterState.activeSubMeter.meterNo}
-        options={[...getSubMeters(), "all"]}
+        options={
+          getSubMeters()?.length > 0
+            ? [...getSubMeters(), "all"]
+            : ["no meter available"]
+        }
         renderInput={(params) => (
           <TextField {...params} label="Select m-paya meter" />
         )}
