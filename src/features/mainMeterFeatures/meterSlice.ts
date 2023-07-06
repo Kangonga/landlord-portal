@@ -58,7 +58,7 @@ const meterReducer = createSlice({
         state.regDate = "";
         state.sm = [];
         state.utilityType = "";
-        state.activeSubMeter = "all";
+        state.activeSubMeter = "";
       } else {
         state.accName = action.payload.accName;
         state.accNo = action.payload.accNo;
@@ -75,6 +75,9 @@ const meterReducer = createSlice({
       }
     },
     changeActiveSubMeter: (state, action) => {
+      if (action.payload == "all") {
+        state.activeSubMeter = "all";
+      }
       state.activeSubMeter = action.payload;
     },
   },
