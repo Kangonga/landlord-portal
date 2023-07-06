@@ -7,12 +7,13 @@ export interface formInterface {
 interface paymentsOut {
   mmId: string;
   pId: string;
-  paytime: string;
+  payTime: string;
   accNo: string;
   accName: string;
   amount: string;
   message: string;
 }
+
 export interface apiResult {
   data: {
     user: number;
@@ -23,33 +24,29 @@ export interface apiResult {
 }
 
 export interface motherMeterInterface {
-  [number: string]: {
-    mmId: number;
-    buildingNo: string;
-    accNo: string;
-    accName: string;
-    accType: string;
-    utilityType: string;
-    regDate: string;
-    sm: subMeterInterface;
-    payments?: paymentsOut;
-  };
+  mmId: number;
+  buildingNo: string;
+  accNo: string;
+  accName: string;
+  accType: string;
+  utilityType: string;
+  regDate: string;
+  sm: subMeterInterface[];
+  payments?: paymentsOut[];
 }
-interface subMeterInterface {
-  [name: string]: {
-    mmId: number;
-    smId: number;
-    meterNo: string;
-    type: number;
-    regDate: string;
-    payments: payment[];
-  };
+export interface subMeterInterface {
+  mmId: number;
+  smId: number;
+  meterNo: string;
+  type: number;
+  regDate: string;
+  payments: payment[];
 }
-interface payment {
+export interface payment {
   mmId: number;
   smId: number;
   pId: number;
-  paytime: string;
+  payTime: string;
   txId: string;
   phone: string | null;
   payer: string | null;
