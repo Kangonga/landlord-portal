@@ -36,6 +36,10 @@ export default function MeterWidgets() {
     dispatch(meterActions.changeActiveMeter(""));
     setUtil(value as string);
   };
+  const setActiveSubMeter = (meterNo: string) => {
+    const meter = meterState.sm.filter((sm) => sm.meterNo == meterNo)[0];
+    dispatch(meterActions.changeActiveSubMeter(meter));
+  };
 
   return (
     <WidgetsContainer>
@@ -78,6 +82,7 @@ export default function MeterWidgets() {
           <TextField {...params} label="Select m-paya meter" />
         )}
         noOptionsText="No meter found"
+        onChange={(_e, value) => setActiveSubMeter(String(value))}
       />
     </WidgetsContainer>
   );
