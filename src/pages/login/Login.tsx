@@ -9,7 +9,7 @@ import { Button, CircularProgress, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import handleLogin from "@/hooks/useLogin";
 import { useState } from "react";
-import { useAppDispatch } from "@/globalHooks";
+import { useAppDispatch, useAppSelector } from "@/globalHooks";
 import { authActions } from "@/features/authentication/authSlice";
 import { useFormik } from "formik";
 import { validationSchema } from "@/pages/login/validationSchema";
@@ -19,7 +19,7 @@ export default function Login() {
   const dispatch = useAppDispatch();
   const [isError, setIsError] = useState(false);
   const [isRequestSent, setIsRequestSent] = useState(false);
-
+  const state = useAppSelector((state) => state.auth);
   const navigate = useNavigate();
 
   const handleSubmit = async (values: formInterface) => {
@@ -31,11 +31,13 @@ export default function Login() {
     if (response.status === 1) {
       setIsError(true);
       setIsRequestSent(false);
+      console.log("state not updated");
     } else {
       const user = response.data.user;
       const token = response.data.token;
       setIsError(false);
       dispatch(authActions.login({ user, token }));
+      dispatch(authActions.updatePhoneNumber(values.phone));
       navigate("/home");
     }
   };
