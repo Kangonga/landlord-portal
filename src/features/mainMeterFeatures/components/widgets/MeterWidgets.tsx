@@ -9,7 +9,6 @@ export default function MeterWidgets() {
   const meterState = useAppSelector((state) => state.meter);
   const dispatch = useAppDispatch();
   const [util, setUtil] = useState("all");
-  console.log(util);
   const getMotherMeterIds = (utility: string) => {
     if (utility === "all") {
       return utilityState.mm.map((mm) => mm.accNo);
@@ -20,23 +19,29 @@ export default function MeterWidgets() {
   };
   const getSubMeters = () => {
     if (util === "all") {
-      return utilityState.mm.map((mm) => mm.sm.map((sm) => sm.meterNo));
+      const submeters = utilityState.mm.map((mm) =>
+        mm.sm.map((sm) => sm.meterNo)
+      );
+      return submeters[0];
     }
-    return utilityState.mm
+    const submeters = utilityState.mm
       .filter((mm) => mm.utilityType === util)
       .map((mm) => mm.sm.map((sm) => sm.meterNo));
+    return submeters[0];
   };
   const setActiveMeter = (accNo: string) => {
-    console.log("accno", accNo);
     const meter = utilityState.mm.filter((mm) => mm.accNo == accNo)[0];
     dispatch(meterActions.changeActiveMeter(meter));
-    console.log("active m,eter", meterState);
   };
   const changeUtil = (value: unknown) => {
     dispatch(meterActions.changeActiveMeter(""));
     setUtil(value as string);
   };
   const setActiveSubMeter = (meterNo: string) => {
+    if (meterNo == "all") {
+      dispatch(meterActions.changeActiveSubMeter("all"));
+      return;
+    }
     const meter = meterState.sm.filter((sm) => sm.meterNo == meterNo)[0];
     dispatch(meterActions.changeActiveSubMeter(meter));
   };
@@ -77,7 +82,8 @@ export default function MeterWidgets() {
         disablePortal
         sx={{ width: "200px" }}
         id="combo-box"
-        options={[...String(getSubMeters()).split(","), "all"]}
+        value={meterState.activeSubMeter.meterNo}
+        options={[...getSubMeters(), "all"]}
         renderInput={(params) => (
           <TextField {...params} label="Select m-paya meter" />
         )}
