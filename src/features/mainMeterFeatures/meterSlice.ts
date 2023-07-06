@@ -34,7 +34,7 @@ const emptySm: subMeterInterface = {
   regDate: "",
   payments: [],
 };
-interface motherMeterInterface {
+export interface motherMeterSliceInterface {
   mmId: number;
   buildingNo: string;
   accNo: string;
@@ -47,7 +47,7 @@ interface motherMeterInterface {
   activeSubMeter: subMeterInterface;
 }
 
-const initialState: motherMeterInterface = {
+const initialState: motherMeterSliceInterface = {
   mmId: 0,
   buildingNo: "",
   accNo: "",
