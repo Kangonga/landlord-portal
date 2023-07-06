@@ -14,6 +14,7 @@ import {
 import storage from "redux-persist/lib/storage";
 import persistStore from "redux-persist/es/persistStore";
 import utilityReducer from "@/features/utilitySlice";
+import meterReducer from "@/features/mainMeterFeatures/meterSlice";
 
 const persistConfig = {
   key: "root",
@@ -23,11 +24,13 @@ const persistConfig = {
 export interface storeInterface {
   auth: object;
   utility: object;
+  meter: object;
 }
 
 const reducers = combineReducers({
   auth: authReducer,
   utility: utilityReducer,
+  meter: meterReducer,
 });
 
 const persisedReducer = persistReducer(persistConfig, reducers);
