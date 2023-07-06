@@ -55,7 +55,6 @@ export function Barchart() {
       year,
     });
   }
-  console.log(barData);
   const data = {
     labels,
     datasets: [
