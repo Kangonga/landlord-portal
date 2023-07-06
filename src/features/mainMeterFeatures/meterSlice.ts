@@ -49,18 +49,30 @@ const meterReducer = createSlice({
   initialState,
   reducers: {
     changeActiveMeter: (state, action) => {
-      state.accName = action.payload.accName;
-      state.accNo = action.payload.accNo;
-      state.accType = action.payload.accType;
-      state.buildingNo = action.payload.buildingNo;
-      state.mmId = action.payload.mmId;
-      state.regDate = action.payload.regDate;
-      state.sm = action.payload.sm;
-      state.utilityType = action.payload.utilityType;
-      if (action.payload.payments) {
-        state.payments = action.payload.payments;
+      if (action.payload == "") {
+        state.accName = "";
+        state.accNo = "";
+        state.accType = "";
+        state.buildingNo = "";
+        state.mmId = 0;
+        state.regDate = "";
+        state.sm = [];
+        state.utilityType = "";
+        state.activeSubMeter = "all";
+      } else {
+        state.accName = action.payload.accName;
+        state.accNo = action.payload.accNo;
+        state.accType = action.payload.accType;
+        state.buildingNo = action.payload.buildingNo;
+        state.mmId = action.payload.mmId;
+        state.regDate = action.payload.regDate;
+        state.sm = action.payload.sm;
+        state.utilityType = action.payload.utilityType;
+        if (action.payload.payments) {
+          state.payments = action.payload.payments;
+        }
+        state.activeSubMeter = "";
       }
-      state.activeSubMeter = "all";
     },
     changeActiveSubMeter: (state, action) => {
       state.activeSubMeter = action.payload;
