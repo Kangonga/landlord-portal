@@ -29,6 +29,12 @@ const utilitySlice = createSlice({
       state.data.nationalID = action.payload.nationalID;
       state.data.regDate = action.payload.regDate;
       state.data.mm = Object.values(action.payload.mm);
+      const mms = state.data.mm;
+      for (const mm of mms) {
+        const sm = Object.values(mm.sm);
+        //convert object of submeter objects to an array of sub meter objects
+        mm.sm = sm;
+      }
     },
   },
 });
