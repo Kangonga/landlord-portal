@@ -37,8 +37,8 @@ export default function MeterWidgets() {
     dispatch(meterActions.changeActiveMeter(meter));
   };
   const changeUtil = (value: unknown) => {
-    dispatch(meterActions.changeActiveMeter(""));
     setUtil(value as string);
+    dispatch(meterActions.changeActiveMeter(""));
   };
   const setActiveSubMeter = (meterNo: string) => {
     if (meterNo == "all") {
