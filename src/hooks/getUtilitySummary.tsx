@@ -2,7 +2,6 @@
 import { useAppSelector } from "@/globalHooks";
 import useGetMeterCollections from "@/hooks/getMeterCollections";
 import useGetMeterPayments from "@/hooks/getMeterPayments";
-import { subMeterInterface } from "@/pages/login/interfaces";
 
 export interface summaryInterface {
   id: number;
@@ -16,7 +15,6 @@ export interface summaryInterface {
 export default function useGetUtilitySummary(month: number) {
   const utilityState = useAppSelector((state) => state.utility.data);
   const summaryArray = [];
-  // let collections = 0;
   const months = [
     "January",
     "February",
@@ -32,9 +30,7 @@ export default function useGetUtilitySummary(month: number) {
     "December",
   ];
   const currentYear = new Date().getFullYear().toString().slice(-2);
-  // const currentMonth = months[new Date().getUTCMonth()].slice(0, 3);
   const currentMonth = months[month];
-  // console.log("currentmonth", currentMonth);
   for (const motherMeter of utilityState.mm) {
     const summary: summaryInterface = {
       id: 0,
@@ -48,7 +44,6 @@ export default function useGetUtilitySummary(month: number) {
     summary.id = Number(motherMeter.accNo);
     summary.utility = motherMeter.utilityType;
     summary.submeter = motherMeter.sm.length;
-    const submeters = motherMeter.sm;
     summary.collections = useGetMeterCollections(
       currentMonth,
       currentYear,
@@ -62,7 +57,6 @@ export default function useGetUtilitySummary(month: number) {
     summary.balance = Number(summary.collections) - Number(summary.paid);
     summary.action = "View meter details";
     summaryArray.push(summary);
-    // console.log("summary array", summaryArray);
   }
   return summaryArray;
 }
