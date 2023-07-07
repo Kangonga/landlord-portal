@@ -1,14 +1,12 @@
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { MeterContainer } from "./styles";
-import {
-  payInColumns,
-  payOutColumns,
-  payoutrows,
-} from "./meterTableDataStructure";
+import { payInColumns, payOutColumns } from "./meterTableDataStructure";
 import { Box, Typography } from "@mui/material";
 import SubMeterTable from "../subMeterTable/SubMeterTable";
 import { useAppSelector } from "@/globalHooks";
 import useGetMeterUtilitySummary from "@/hooks/getMeterUtilitySummary";
+import useGetMeterPaymentsOut from "@/hooks/getMeterPaymentsOut";
+import useGetSubMeterSummary from "@/hooks/getSubMeterSummary";
 
 export default function MeterDataTables() {
   const activeMeter = useAppSelector((state) => state.meter);
@@ -20,6 +18,8 @@ export default function MeterDataTables() {
   ) {
     rows = [];
   }
+  const payOutRows = useGetMeterPaymentsOut();
+  const subMeterSummary = useGetSubMeterSummary();
   return (
     <MeterContainer>
       <Box>
@@ -51,7 +51,7 @@ export default function MeterDataTables() {
           Payments Out
         </Typography>
         <DataGrid
-          rows={payoutrows}
+          rows={payOutRows}
           columns={payOutColumns}
           autoHeight
           sx={{
@@ -60,9 +60,13 @@ export default function MeterDataTables() {
           slots={{
             toolbar: GridToolbar,
           }}
+          initialState={{
+            pagination: { paginationModel: { pageSize: 5 } },
+          }}
+          pageSizeOptions={[5, 10, 20]}
         />
       </Box>
-      <SubMeterTable />
+      <SubMeterTable summaryRow={subMeterSummary} />
     </MeterContainer>
   );
 }
