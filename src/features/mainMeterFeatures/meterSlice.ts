@@ -4,7 +4,7 @@ import { createSlice } from "@reduxjs/toolkit";
 interface paymentsOut {
   mmId: string;
   pId: string;
-  paytime: string;
+  payTime: string;
   accNo: string;
   accName: string;
   amount: string;
