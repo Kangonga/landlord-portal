@@ -15,7 +15,6 @@ export default function BuildingDataTable({
       >
         July Building summary
       </Typography>
-      <>{console.log("rows", rows)}</>
       <DataGrid
         columns={columns}
         rows={rows}
