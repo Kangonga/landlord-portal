@@ -9,7 +9,7 @@ import BuildingDataTable from "../../features/buildingFeatures/components/buildi
 import Topbar from "@/shared/topbar/Topbar";
 import { Box } from "@mui/material";
 import { getDashboardData } from "@/hooks/getDashboardData";
-import { useAppDispatch } from "@/globalHooks";
+import { useAppDispatch, useAppSelector } from "@/globalHooks";
 import { utilityActions } from "@/features/utilitySlice";
 import { useEffect } from "react";
 import useGetUtilitySummary from "@/hooks/getUtilitySummary";
@@ -18,12 +18,13 @@ import { Barchart } from "@/features/buildingFeatures/components/buildingBarChar
 export default function Home() {
   const dispatch = useAppDispatch();
   const utilitySummaryRows = useGetUtilitySummary(new Date().getUTCMonth());
-
+  const authState = useAppSelector((state) => state.auth);
   useEffect(() => {
     async function fetchData() {
-      const data = await getDashboardData();
+      const data = await getDashboardData(authState.token, authState.userId);
       if (data?.status == 0) {
-        dispatch(utilityActions.initialSetUp(data));
+        console.log("response data", data);
+        dispatch(utilityActions.initialSetUp(data.data));
       }
     }
     fetchData();

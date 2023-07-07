@@ -29,7 +29,7 @@ const utilitySlice = createSlice({
       state.data.address = action.payload.address;
       state.data.nationalID = action.payload.nationalID;
       state.data.regDate = action.payload.regDate;
-      state.data.mm = Object.values(action.payload.mm);
+      state.data.mm = action.payload.mm ? Object.values(action.payload.mm) : [];
       const mms = state.data.mm;
       for (const mm of mms) {
         const sm = Object.values(mm.sm);

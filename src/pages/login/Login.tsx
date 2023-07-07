@@ -17,9 +17,9 @@ import { apiResult, formInterface } from "@/pages/login/interfaces";
 
 export default function Login() {
   const dispatch = useAppDispatch();
+  const state = useAppSelector((state) => state);
   const [isError, setIsError] = useState(false);
   const [isRequestSent, setIsRequestSent] = useState(false);
-  const state = useAppSelector((state) => state.auth);
   const navigate = useNavigate();
 
   const handleSubmit = async (values: formInterface) => {
@@ -38,6 +38,8 @@ export default function Login() {
       setIsError(false);
       dispatch(authActions.login({ user, token }));
       dispatch(authActions.updatePhoneNumber(values.phone));
+      console.log("response", response);
+      console.log("updated state", state);
       navigate("/home");
     }
   };
