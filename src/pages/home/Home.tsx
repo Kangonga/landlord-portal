@@ -9,18 +9,13 @@ import BuildingDataTable from "../../features/buildingFeatures/components/buildi
 import Topbar from "@/shared/topbar/Topbar";
 import { Box } from "@mui/material";
 import { getDashboardData } from "@/hooks/getDashboardData";
-import { useAppDispatch, useAppSelector } from "@/globalHooks";
-// import { useNavigate } from "react-router-dom";
-import { useQuery } from "@tanstack/react-query";
+import { useAppDispatch } from "@/globalHooks";
 import { utilityActions } from "@/features/utilitySlice";
 import { useEffect } from "react";
 import useGetUtilitySummary from "@/hooks/getUtilitySummary";
 import { Barchart } from "@/features/buildingFeatures/components/buildingBarChart/buildingBarChart";
 
 export default function Home() {
-  // const navigate = useNavigate();
-  // const auth = useAppSelector((state) => state.auth);
-  const utility = useAppSelector((state) => state.utility);
   const dispatch = useAppDispatch();
   const utilitySummaryRows = useGetUtilitySummary(new Date().getUTCMonth());
 
@@ -32,6 +27,7 @@ export default function Home() {
       }
     }
     fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
     <Box>
