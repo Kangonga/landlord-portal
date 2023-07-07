@@ -29,7 +29,7 @@ const allSm: subMeterInterface = {
 const emptySm: subMeterInterface = {
   mmId: 0,
   smId: 0,
-  meterNo: "none",
+  meterNo: "search/select",
   type: 0,
   regDate: "",
   payments: [],
@@ -50,7 +50,7 @@ export interface motherMeterSliceInterface {
 const initialState: motherMeterSliceInterface = {
   mmId: 0,
   buildingNo: "",
-  accNo: "",
+  accNo: "select a meter",
   accName: "",
   accType: "",
   utilityType: "",
@@ -66,15 +66,7 @@ const meterReducer = createSlice({
   reducers: {
     changeActiveMeter: (state, action) => {
       if (action.payload == "") {
-        state.accName = "";
-        state.accNo = "";
-        state.accType = "";
-        state.buildingNo = "";
-        state.mmId = 0;
-        state.regDate = "";
-        state.sm = [];
-        state.utilityType = "";
-        state.activeSubMeter = emptySm;
+        return initialState;
       } else {
         state.accName = action.payload.accName;
         state.accNo = action.payload.accNo;
@@ -87,7 +79,7 @@ const meterReducer = createSlice({
         if (action.payload.payments) {
           state.payments = action.payload.payments;
         }
-        state.activeSubMeter = emptySm;
+        state.activeSubMeter = allSm;
       }
     },
     changeActiveSubMeter: (state, action) => {
