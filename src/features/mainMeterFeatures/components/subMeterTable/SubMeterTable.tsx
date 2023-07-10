@@ -14,6 +14,7 @@ export default function SubMeterTable(props: any) {
         columns={subMeterTableColumns}
         sx={{
           border: "2px solid #cbd5e1",
+          width: "max-content",
         }}
         slots={{
           toolbar: GridToolbar,
