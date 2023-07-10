@@ -24,9 +24,7 @@ export default function MainMeter() {
             <MeterBarchart submeter={submeter} motherMeter={motherMeter} />
           </Bar>
         </BarChartContainer>
-        <Typography fontSize="1.3rem" color="blue" textAlign="center">
-          Meter Details
-        </Typography>
+
         <MeterDataTables />
       </MainMeterContainer>
     </Box>
