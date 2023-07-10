@@ -1,6 +1,6 @@
 import { Box, Typography } from "@mui/material";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
-import { columns } from "./buildingTableDataStructure";
+import { useColumns } from "./buildingTableDataStructure";
 import { summaryInterface } from "@/hooks/getUtilitySummary";
 
 export default function BuildingDataTable({
@@ -13,10 +13,10 @@ export default function BuildingDataTable({
       <Typography
         sx={{ fontSize: "1.2rem", textAlign: "center", color: "gray" }}
       >
-        July Building summary
+        July 2023 Building summary
       </Typography>
       <DataGrid
-        columns={columns}
+        columns={useColumns()}
         rows={rows}
         slots={{
           toolbar: GridToolbar,
