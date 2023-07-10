@@ -44,7 +44,7 @@ export interface motherMeterSliceInterface {
   regDate: string;
   sm: subMeterInterface[];
   payments?: paymentsOut[];
-  activeSubMeter: subMeterInterface;
+  activeSubMeter?: subMeterInterface;
 }
 
 const initialState: motherMeterSliceInterface = {
