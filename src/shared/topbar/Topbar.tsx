@@ -1,11 +1,11 @@
 import { Autocomplete, Avatar, TextField } from "@mui/material";
 import { AvatarContainer, StyledBadge, TopBarContainer } from "./styles";
-import { useAppDispatch, useAppSelector } from "@/globalHooks";
+import { useAppSelector } from "@/globalHooks";
 
 function Topbar() {
   // const buildings = useAppSelector((state) => state.utility.allBuildings);
   const utilityState = useAppSelector((state) => state.utility);
-  const dispatch = useAppDispatch();
+  // const dispatch = useAppDispatch();
 
   return (
     <TopBarContainer>

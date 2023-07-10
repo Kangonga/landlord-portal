@@ -1,6 +1,6 @@
 import { FormEvent, useState } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
-import useUpdatePassword from "@/hooks/useUpdatePassword";
+import { Navigate } from "react-router-dom";
+// import useUpdatePassword from "@/hooks/useUpdatePassword";
 import { useAppSelector } from "@/globalHooks";
 import {
   LoginButtonContainer,
@@ -11,10 +11,9 @@ import { images } from "@/assets";
 import { Button, CircularProgress, Typography } from "@mui/material";
 
 export default function ResetPassword() {
-  const state = useAppSelector((state) => state.auth);
-  const token = useAppSelector((state) => state.auth.token);
+  // const token = useAppSelector((state) => state.auth.token);
   const userId = useAppSelector((state) => state.auth.userId);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [showErrors, setShowErrors] = useState(false);
@@ -23,16 +22,16 @@ export default function ResetPassword() {
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     setIsPasswordChanged(true);
-    if (confirmPassword === password) {
-      (async () => {
-        const response = await useUpdatePassword(userId, password, token);
-        if (response.status == 0) navigate("/");
-        else {
-          setIsPasswordChanged(false);
-          setShowErrors(true);
-        }
-      })();
-    }
+    // if (confirmPassword === password) {
+    //   (async () => {
+    //     const response = await useUpdatePassword(userId, password, token);
+    //     if (response.status == 0) navigate("/");
+    //     else {
+    //       setIsPasswordChanged(false);
+    //       setShowErrors(true);
+    //     }
+    //   })();
+    // }
   };
   return (
     <LoginPageContainer>

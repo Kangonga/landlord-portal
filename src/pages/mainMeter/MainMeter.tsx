@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Box } from "@mui/material";
 import MeterDataTables from "../../features/mainMeterFeatures/components/mainMeterDataTable/MeterDataTables";
 import MeterWidgets from "../../features/mainMeterFeatures/components/widgets/MeterWidgets";
 import { MainMeterContainer } from "./styles";
