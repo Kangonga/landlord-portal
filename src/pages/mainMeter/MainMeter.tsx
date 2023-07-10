@@ -12,7 +12,7 @@ import { useAppSelector } from "@/globalHooks";
 
 export default function MainMeter() {
   const motherMeter = useAppSelector((state) => state.meter);
-  const submeter = motherMeter.activeSubMeter;
+  const submeter = motherMeter.activeSubMeter!;
 
   return (
     <Box>
