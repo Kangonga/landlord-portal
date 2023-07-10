@@ -22,51 +22,57 @@ export default function MeterDataTables() {
   const subMeterSummary = useGetSubMeterSummary();
   return (
     <MeterContainer>
-      <Box>
-        <Typography
-          sx={{ textAlign: "center", color: "gray", fontSize: "1.2rem" }}
-        >
-          Payments In
-        </Typography>
-        <DataGrid
-          rows={rows}
-          columns={payInColumns}
-          slots={{
-            toolbar: GridToolbar,
-          }}
-          sx={{
-            border: "2px solid #cbd5e1",
-          }}
-          initialState={{
-            pagination: { paginationModel: { pageSize: 5 } },
-          }}
-          pageSizeOptions={[5, 10, 50]}
-          autoHeight
-        />
-      </Box>
-      <Box>
-        <Typography
-          sx={{ textAlign: "center", color: "gray", fontSize: "1.2rem" }}
-        >
-          Payments Out
-        </Typography>
-        <DataGrid
-          rows={payOutRows}
-          columns={payOutColumns}
-          autoHeight
-          sx={{
-            border: "2px solid #cbd5e1",
-          }}
-          slots={{
-            toolbar: GridToolbar,
-          }}
-          initialState={{
-            pagination: { paginationModel: { pageSize: 5 } },
-          }}
-          pageSizeOptions={[5, 10, 20]}
-        />
-      </Box>
-      <SubMeterTable summaryRow={subMeterSummary} />
+      {rows.length > 0 && (
+        <Box>
+          <Typography
+            sx={{ textAlign: "center", color: "gray", fontSize: "1.2rem" }}
+          >
+            Payments In
+          </Typography>
+          <DataGrid
+            rows={rows}
+            columns={payInColumns}
+            slots={{
+              toolbar: GridToolbar,
+            }}
+            sx={{
+              border: "2px solid #cbd5e1",
+            }}
+            initialState={{
+              pagination: { paginationModel: { pageSize: 5 } },
+            }}
+            pageSizeOptions={[5, 10, 50]}
+            autoHeight
+          />
+        </Box>
+      )}
+      {payOutRows.length > 0 && (
+        <Box>
+          <Typography
+            sx={{ textAlign: "center", color: "gray", fontSize: "1.2rem" }}
+          >
+            Payments Out
+          </Typography>
+          <DataGrid
+            rows={payOutRows}
+            columns={payOutColumns}
+            autoHeight
+            sx={{
+              border: "2px solid #cbd5e1",
+            }}
+            slots={{
+              toolbar: GridToolbar,
+            }}
+            initialState={{
+              pagination: { paginationModel: { pageSize: 5 } },
+            }}
+            pageSizeOptions={[5, 10, 20]}
+          />
+        </Box>
+      )}
+      {subMeterSummary.length > 0 && (
+        <SubMeterTable summaryRow={subMeterSummary} />
+      )}
     </MeterContainer>
   );
 }
