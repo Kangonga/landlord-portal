@@ -16,7 +16,7 @@ export default function ResetPassword() {
   // const navigate = useNavigate();
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [showErrors, setShowErrors] = useState(false);
+  // const [showErrors, setShowErrors] = useState(false);
 
   const [isPasswordChanged, setIsPasswordChanged] = useState(false);
   const handleSubmit = (e: FormEvent) => {
@@ -85,9 +85,9 @@ export default function ResetPassword() {
             {isPasswordChanged && (
               <CircularProgress size={23} sx={{ color: "white" }} />
             )}
-            {showErrors && (
+            {/* {showErrors && (
               <div color="coral">Password update unsuccessful. Try again</div>
-            )}
+            )} */}
           </LoginButtonContainer>
         </form>
       </LoginForm>
