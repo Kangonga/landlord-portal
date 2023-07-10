@@ -9,7 +9,7 @@ import { Button, CircularProgress, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import handleLogin from "@/hooks/useLogin";
 import { useState } from "react";
-import { useAppDispatch, useAppSelector } from "@/globalHooks";
+import { useAppDispatch } from "@/globalHooks";
 import { authActions } from "@/features/authentication/authSlice";
 import { useFormik } from "formik";
 import { validationSchema } from "@/pages/login/validationSchema";
@@ -17,7 +17,6 @@ import { apiResult, formInterface } from "@/pages/login/interfaces";
 
 export default function Login() {
   const dispatch = useAppDispatch();
-  const state = useAppSelector((state) => state);
   const [isError, setIsError] = useState(false);
   const [isRequestSent, setIsRequestSent] = useState(false);
   const navigate = useNavigate();
@@ -39,7 +38,6 @@ export default function Login() {
       dispatch(authActions.login({ user, token }));
       dispatch(authActions.updatePhoneNumber(values.phone));
       console.log("response", response);
-      console.log("updated state", state);
       navigate("/home");
     }
   };
@@ -107,14 +105,7 @@ export default function Login() {
               </Typography>
             )}
           </>
-          {/* <div className='keepLoggedInSection'>
-            <label>Keep me signed in</label>
-              <input 
-              checked={formik.values.keepLoggedIn}
-              type='checkbox'
-              onChange={formik.handleChange}
-              name='keepLoggedIn' style={{marginLeft:'1rem'}}/>
-          </div> */}
+
           <LoginButtonContainer isRequestSent={isRequestSent}>
             <Button disabled={isRequestSent} className="button" type="submit">
               Sign In
