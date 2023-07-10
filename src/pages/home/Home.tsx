@@ -11,19 +11,19 @@ import { Box } from "@mui/material";
 import { getDashboardData } from "@/hooks/getDashboardData";
 import { useAppDispatch, useAppSelector } from "@/globalHooks";
 import { utilityActions } from "@/features/utilitySlice";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import useGetUtilitySummary from "@/hooks/getUtilitySummary";
 import { Barchart } from "@/features/buildingFeatures/components/buildingBarChart/buildingBarChart";
 
 export default function Home() {
   const dispatch = useAppDispatch();
-  const utilitySummaryRows = useGetUtilitySummary(new Date().getUTCMonth());
+  const [date, setDate] = useState(new Date().getUTCMonth());
+  const utilitySummaryRows = useGetUtilitySummary(date);
   const authState = useAppSelector((state) => state.auth);
   useEffect(() => {
     async function fetchData() {
       const data = await getDashboardData(authState.token, authState.userId);
       if (data?.status == 0) {
-        console.log("response data", data);
         dispatch(utilityActions.initialSetUp(data.data));
       }
     }
