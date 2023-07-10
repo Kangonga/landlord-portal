@@ -85,7 +85,11 @@ export default function MeterWidgets() {
         disablePortal
         sx={{ width: "200px" }}
         id="combo-box"
-        value={meterState.activeSubMeter.meterNo}
+        value={
+          meterState.activeSubMeter?.meterNo
+            ? meterState.activeSubMeter?.meterNo
+            : "select/search meter"
+        }
         options={
           getSubMeters()?.length > 0
             ? [...getSubMeters(), "all"]
