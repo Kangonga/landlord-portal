@@ -40,6 +40,9 @@ const utilitySlice = createSlice({
     updateUtility: (state, action) => {
       state.activeUtility = action.payload;
     },
+    logOut: (state) => {
+      state = { ...initialState };
+    },
   },
 });
 
