@@ -33,6 +33,7 @@ export interface motherMeterInterface {
   regDate: string;
   sm: subMeterInterface[];
   payments?: paymentsOut[];
+  activeSubMeter?: subMeterInterface;
 }
 export interface subMeterInterface {
   mmId: number;
