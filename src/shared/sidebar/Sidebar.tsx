@@ -62,7 +62,7 @@ export default function Sidebar() {
     },
   ];
   return (
-    <Box sx={{ display: "flex" }}>
+    <Box sx={{ display: "flex", height: "100%" }}>
       <CssBaseline />
       <Drawer
         variant="permanent"
