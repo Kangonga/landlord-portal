@@ -30,14 +30,12 @@ export default function Login() {
     if (response.status === 1) {
       setIsError(true);
       setIsRequestSent(false);
-      console.log("state not updated");
     } else {
       const user = response.data.user;
       const token = response.data.token;
       setIsError(false);
       dispatch(authActions.login({ user, token }));
       dispatch(authActions.updatePhoneNumber(values.phone));
-      console.log("response", response);
       navigate("/home");
     }
   };
