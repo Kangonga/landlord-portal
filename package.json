@@ -9,7 +9,7 @@
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "test": "vitest",
-    "json":"json-server --watch db.json"
+    "json": "json-server --watch db.json"
   },
   "dependencies": {
     "@emotion/react": "^11.10.8",
