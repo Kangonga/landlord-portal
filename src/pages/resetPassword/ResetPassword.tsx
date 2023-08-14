@@ -1,6 +1,5 @@
 import { FormEvent, useState } from "react";
 import { Navigate } from "react-router-dom";
-// import useUpdatePassword from "@/hooks/useUpdatePassword";
 import { useAppSelector } from "@/globalHooks";
 import {
   LoginButtonContainer,
@@ -11,27 +10,14 @@ import { images } from "@/assets";
 import { Button, CircularProgress, Typography } from "@mui/material";
 
 export default function ResetPassword() {
-  // const token = useAppSelector((state) => state.auth.token);
   const userId = useAppSelector((state) => state.auth.userId);
-  // const navigate = useNavigate();
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  // const [showErrors, setShowErrors] = useState(false);
 
   const [isPasswordChanged, setIsPasswordChanged] = useState(false);
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     setIsPasswordChanged(true);
-    // if (confirmPassword === password) {
-    //   (async () => {
-    //     const response = await useUpdatePassword(userId, password, token);
-    //     if (response.status == 0) navigate("/");
-    //     else {
-    //       setIsPasswordChanged(false);
-    //       setShowErrors(true);
-    //     }
-    //   })();
-    // }
   };
   return (
     <LoginPageContainer>
@@ -85,9 +71,6 @@ export default function ResetPassword() {
             {isPasswordChanged && (
               <CircularProgress size={23} sx={{ color: "white" }} />
             )}
-            {/* {showErrors && (
-              <div color="coral">Password update unsuccessful. Try again</div>
-            )} */}
           </LoginButtonContainer>
         </form>
       </LoginForm>
