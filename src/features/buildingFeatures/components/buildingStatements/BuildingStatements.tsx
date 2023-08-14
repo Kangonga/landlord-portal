@@ -18,19 +18,32 @@ import {
   getLastThreeMonths,
   getLasttwelveMonths,
 } from "@/utils/getStatementPeriods";
+import { useAppSelector } from "@/globalHooks";
+import getDownloadStatements from "@/hooks/useDownloadStatements";
 
 export default function BuildingStatements() {
+  const state = useAppSelector((state) => state);
+  // const [isRequestSent, setIsRequestSent] = useState(false);
   const today = dayjs();
   const currentyear = String(new Date().getFullYear()).slice(-2);
   const month = new Date().getMonth() + 1;
   const currentMonth = month > 10 ? String(month) : "0" + String(month);
-
+  console.log("current month and year", currentyear + currentMonth);
   const [date, setdate] = useState({
-    from: "",
-    to: "",
+    from: currentyear + currentMonth,
+    to: currentyear + currentMonth,
   });
+  const handleDownload = async () => {
+    const userId = state.auth.userId;
+    const token = state.auth.token;
+    const account = state.utility.data.mm[0].accNo;
+    const from = date.from;
+    const to = date.to;
+    console.log("current state", state);
+    await getDownloadStatements({ account, userId, token, from, to });
+  };
   const handleCustomDateChange = (value: Dayjs, type: string) => {
-    const year = value.get("year");
+    const year = String(value.get("year")).slice(-2);
     let monthIndex = value.get("month");
     monthIndex = monthIndex + 1;
     let month = String(monthIndex);
@@ -41,6 +54,7 @@ export default function BuildingStatements() {
       ...date,
       [type]: year + month,
     });
+    console.log("custom date", date);
   };
   const handleDateChange = (value: string) => {
     switch (value) {
@@ -101,6 +115,7 @@ export default function BuildingStatements() {
               height: "max-content",
               padding: "1.2rem 0.75rem",
             }}
+            onClick={handleDownload}
           >
             XLS
           </IconButton>
@@ -134,6 +149,7 @@ export default function BuildingStatements() {
                 width: "50%",
                 margin: "auto",
               }}
+              onClick={handleDownload}
             >
               XLS
             </IconButton>
