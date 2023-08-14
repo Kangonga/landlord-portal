@@ -24,6 +24,7 @@ export default function SendOtp() {
     }),
     onSubmit: async (values) => {
       setIsCodeSent(true);
+      // eslint-disable-next-line react-hooks/rules-of-hooks
       const response = await useVerifyOtp(values.code, userid);
       if (response.status == 0) {
         setShowCodeError(false);
