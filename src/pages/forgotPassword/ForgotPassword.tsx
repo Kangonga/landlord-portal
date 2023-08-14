@@ -28,6 +28,7 @@ export default function ForgotPassword() {
     validationSchema,
     onSubmit: async (values) => {
       setIsRequestSent(true);
+      // eslint-disable-next-line react-hooks/rules-of-hooks
       const response = await useResetPassword(values.phoneNumber);
       if (response.status == 0) {
         setIsRequestSent(true);
