@@ -1,6 +1,3 @@
-import axios, { AxiosRequestConfig } from "axios";
-import fs from "fs";
-
 interface statementProps {
   account: any;
   userId: any;
@@ -34,18 +31,7 @@ export default async function getDownloadStatements({
       },
     }),
   };
-  const params2 = {
-    api: {
-      request: "viewStatement",
-      user: userId,
-      token: token,
-    },
-    input: {
-      from: from,
-      to: to,
-      account: account,
-    },
-  };
+
   const result = await fetch(url, params);
   const blob = await result.blob();
   const newurl = window.URL.createObjectURL(blob);
@@ -54,8 +40,5 @@ export default async function getDownloadStatements({
   link.setAttribute("download", `${Date.now()}.xlsx`);
   document.body.appendChild(link);
   link.click();
-
-  // Clean up the blob URL after the download
   window.URL.revokeObjectURL(newurl);
-  console.log("params sent", params);
 }
