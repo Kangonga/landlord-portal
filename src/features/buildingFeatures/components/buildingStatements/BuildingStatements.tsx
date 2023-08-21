@@ -28,7 +28,6 @@ export default function BuildingStatements() {
   const currentyear = String(new Date().getFullYear()).slice(-2);
   const month = new Date().getMonth() + 1;
   const currentMonth = month > 10 ? String(month) : "0" + String(month);
-  console.log("current month and year", currentyear + currentMonth);
   const [date, setdate] = useState({
     from: currentyear + currentMonth,
     to: currentyear + currentMonth,
@@ -36,7 +35,10 @@ export default function BuildingStatements() {
   const handleDownload = async () => {
     const userId = state.auth.userId;
     const token = state.auth.token;
-    const account = state.utility.data.mm[0].accNo;
+    const account =
+      state.meter.mmId == 0
+        ? state.utility.data.mm[0].accNo
+        : state.meter.accNo;
     const from = date.from;
     const to = date.to;
     console.log("current state", state);
